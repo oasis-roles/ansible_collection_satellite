@@ -2,7 +2,9 @@
   package_facts:
     manager: auto
 
-- name: satellite | firewalld-config | Installing firewalld package if not already avaiable
+- name: >-
+  satellite | firewalld-config | Installing firewalld package if not
+  already avaiable
   package:
     name: firewalld
     state: latest
@@ -15,7 +17,9 @@
     state: started
     enabled: true
 
-- name: satellite | firewalld-config | Enable the RH Satellite service in firewalld permanently.
+- name: >-
+  satellite | firewalld-config | Enable the RH Satellite service in
+  firewalld permanently.
   firewalld:
     service: "{{ satellite_fw_service_name | default('ssh') }}"
     zone: public
@@ -36,9 +40,9 @@
   changed_when: firewalld_public_policy.stdout != 'DROP'
   register: firewalld_public_policy
 
-- name: satellite | firewalld-config | Enforce drop policy on firewall public zone
+- name: >-
+  satellite | firewalld-config | Enforce drop policy on firewall public zone
   command: "/usr/bin/firewall-cmd --zone public --set-target DROP --permanent"
   when: firewalld_public_policy.stdout != 'DROP'
   notify:
     - firewalld_reload
-
