@@ -1,0 +1,16 @@
+---
+
+- name: Move epel key
+  copy:
+    src: files/rpm_gpg_key_gitlab
+    dest: /opt/rpm_gpg_key_gitlab
+    owner: root
+    group: root
+
+- name: Move epel key
+  copy:
+    src: files/rpm_gpg_key_epel_7
+    dest: /opt/rpm_gpg_key_epel_7
+    owner: root
+    group: root
+

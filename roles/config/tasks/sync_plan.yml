@@ -1,0 +1,17 @@
+---
+# TASKS
+- name: "Create or update daily sync plan"
+  theforeman.foreman.katello_sync_plan:
+    username: "{{ satellite_admin_username }}"
+    password: "{{ satellite_admin_password }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    name: '{{ sync_plans_name }}'
+    organization: "{{ foreman_initial_organization }}"
+    interval: "{{ sync_plans_interval }}"
+    enabled: "{{ sync_plan_enabled }}"
+    sync_date: "{{ sync_plans_time }}"
+    products:
+      - "{{ item.products }}"
+    state: present
+  with_items:
+    - " {{ redhat_products }}"

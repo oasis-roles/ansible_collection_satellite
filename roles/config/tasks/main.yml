@@ -1,1 +1,55 @@
-# role tasks
+---
+# tasks file for satellite role
+
+- name: Rhsm Subscribe
+  import_tasks: rhsm_subscribe.yml
+  when: rhn_connect != 'disconnect'
+
+- name: Create Local Repo
+  import_tasks: create_local_repo.yml
+  when: rhn_connect == 'disconnect'
+
+- name: enable Foreman ansible modules
+  import_tasks: foreman_ansible.yml
+
+- name: Storage Config
+  import_tasks: storage_config.yml
+
+- name: Patch system
+  import_tasks: patch.yml
+
+- name: Enable FIPS
+  import_tasks: fips.yml
+
+- name: Satellite install
+  import_tasks: satellite_install.yml
+
+- name: Configuring Satellite 6 server
+  import_tasks: satellite_settings.yml
+
+- name: Uploading Manifest
+  import_tasks: manifest.yml
+
+- name: Enabling repos
+  import_tasks: repo_management_enablerepos.yml
+
+- name: Synchronizing repos
+  import_tasks: repo_sync.yml
+
+- name: Host Collections
+  import_tasks: host_collections.yml
+
+- name: Content Views
+  import_tasks: content_view_config.yml
+
+- name: Activations Keys
+  import_tasks: activation_key.yml
+
+- name: Sync Plan
+  import_tasks: sync_plan.yml
+
+#- name: Create infrastructure necessary for openscap
+#  include_tasks: openscap_config.yml
+#  loop: "{{ hostgroup_config }}"
+#  loop_control:
+#     loop_var: hostgroup

@@ -1,0 +1,8 @@
+---
+# TASKS
+
+- name: Satellite Content Config | Include the tasks to configure an organization.
+  include_tasks: organization_config.yml
+  loop: "{{ satellite_organizations }}"
+  loop_control:
+    loop_var: org
