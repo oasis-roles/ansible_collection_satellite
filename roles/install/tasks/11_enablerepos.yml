@@ -1,0 +1,38 @@
+---
+- name: Enabling repos | Check to see if localhost is running Satellite
+  shell: command -v hammer >/dev/null 2>&1
+  register: is_hammer_exist
+
+- name: Enabling repos | Checking pulp directory is owned by apache
+  file:
+    path: /var/lib/pulp
+    owner: apache
+    group: apache
+    mode: '0755'
+
+- name: Enable repos | RHEL repositories with label that need releasever
+  theforeman.foreman.katello_repository_set:
+    username: "{{ satellite_rhn_user }}"
+    password: "{{ satellite_rhn_password }}"
+    server_url: "{{ satellite_server_url }}"
+    organization: "{{ satellite_initial_organization }}"
+    label: "{{ item.label }}"
+    repositories:
+      - releasever: "{{ satellite_server_releasever }}"
+        basearch: "{{ satellite_server_basearch }}"
+    state: enabled
+  with_items:
+    - "{{ satellite_red_hat_repositories_releasever }}"
+
+- name: Enable repos | RHEL repositories with label
+  theforeman.foreman.katello_repository_set:
+    username: "{{ satellite_rhn_user }}"
+    password: "{{ satellite_rhn_password }}"
+    server_url: "{{ satellite_server_url }}"
+    organization: "{{ satellite_initial_organization }}"
+    label: "{{ item.label }}"
+    repositories:
+      - basearch: "{{ satellite_server_basearch }}"
+    state: enabled
+  with_items:
+    - "{{ satellite_red_hat_repositories }}"

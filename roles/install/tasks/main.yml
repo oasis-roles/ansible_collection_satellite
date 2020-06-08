@@ -1,43 +1,40 @@
 ---
 # tasks file for satellite role
 
-- name: Rhsm Subscribe
+- name: Main | Rhsm Subscribe
   import_tasks: 1_rhsm_subscribe.yml
   when: rhn_connect != 'disconnect'
 
-- name: Create Local Repo
+- name: Main | Create Local Repo
   import_tasks: 2_create_local_repo.yml
   when: rhn_connect == 'disconnect'
 
-- name: Patch system
+- name: Main | Patch system
   import_tasks: 3_patch.yml
 
-- name: Configure firewalld
+- name: Main | Configure firewalld
   import_tasks: 4_firewalld_config.yml
 
-- name: enable Foreman ansible modules
+- name: Main | enable Foreman ansible modules
   import_tasks: 5_foreman_ansible.yml
 
-- name: Storage Config
+- name: Main | Storage Config
   import_tasks: 6_storage_config.yml
 
-- name: Enable FIPS
+- name: Main | Enable FIPS
   import_tasks: 7_fips.yml
 
-- name: Satellite install
+- name: Main | Satellite install
   import_tasks: 8_satellite_install.yml
 
-- name: Configuring Satellite 6 server
+- name: Main | Configuring Satellite 6 server
   import_tasks: 9_satellite_settings.yml
 
-- name: Uploading Manifest
+- name: Main | Uploading Manifest
   import_tasks: 10_manifest.yml
 
-- name: Enabling repos
-  import_tasks: 11_repo_management_enablerepos.yml
+- name: Main | Enabling repos
+  import_tasks: 11_enablerepos.yml
 
-- name: Synchronizing repos
+- name: Main | Synchronizing repos
   import_tasks: 12_repo_sync.yml
-
-
-e

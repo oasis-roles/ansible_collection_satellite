@@ -1,23 +1,33 @@
 ---
-- name: Foreman Ansible Modules |Create foreman.repo file
-  file:
-    path: /etc/yum.repos.d/foreman.repo
-    owner: root
-    group: root
-    mode: '0644'
-    state: touch
+#- name: Foreman Ansible Modules |Create foreman.repo file
+#  file:
+#    path: /etc/yum.repos.d/foreman.repo
+#    owner: root
+#    group: root
+#    mode: '0644'
+#    state: touch
 
-- name: Foreman Ansible Modules | Create foreman repo
-  blockinfile:
-    path: /etc/yum.repos.d/foreman.repo
-    block: |
-      [rhel-7-server-foreman-client-rpms]
-      baseurl = http://yum.theforeman.org/client/latest/el7/x86_64/
-      name = Red Hat Enterprise Linux 7 Server Foreman Client (RPMs)
-      enabled = 1
-      gpgcheck = 0
+#- name: Foreman Ansible Modules | Create foreman repo
+#  blockinfile:
+#    path: /etc/yum.repos.d/foreman.repo
+#    block: |
+#      [rhel-7-server-foreman-client-rpms]
+#      baseurl = http://yum.theforeman.org/client/latest/el7/x86_64/
+#      name = Red Hat Enterprise Linux 7 Server Foreman Client (RPMs)
+#      enabled = 1
+#      gpgcheck = 0
 
-- name: Foreman Ansible Modules | install ansible-collection-theforeman-foreman
-  package:
-    name: ansible-collection-theforeman-foreman
-    state: present
+#- name: Foreman Ansible Modules | install ansible-collection-theforeman-foreman
+#  package:
+#    name: ansible-collection-theforeman-foreman
+#    state: present
+
+- name: Foreman Ansible | Copy python2 apypie rpm file to server
+  copy:
+     src: "{{ satellite_apypie_rpm }}"
+     dest: "/tmp/{{ satellite_apypie_rpm }}"
+
+- name: Foreman Ansible | Install python2 apypie rpm
+  yum:
+     name: "/tmp/{{ satellite_apypie_rpm }}"
+     state: present
