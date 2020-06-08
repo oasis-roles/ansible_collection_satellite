@@ -1,0 +1,2 @@
+satellite_install_become: true
+satellite_install_become_user: root
