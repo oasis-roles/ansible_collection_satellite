@@ -1,37 +1,46 @@
 ---
 # defaults file for prefab-role
-account_id: "{{ lookup('env','SAT_ACCOUNT_ID') }}"
-rhn_activation_key: "{{ lookup('env','RHN_AK') }}"
-rhn_org: "{{ lookup('env','RHN_ORG')}}"
-rhn_connect: "{{ lookup('env','RHN_CONNECT') }}"
-content_source: "{{ lookup('env','CONTENT_SOURCE') }}"
-satellite_admin_username: "{{ lookup('env','FOREMAN_USER') }}"
-satellite_admin_password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
-foreman_initial_organization: "{{ lookup('env','FOREMAN_INITIAL_ORGANIZATION') }}"
-foreman_initial_location: "{{ lookup('env','FOREMAN_INITIAL_LOCATION') }}"
-manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
-sync_plans_name: 'Nightly_Midnight_Sync'
-sync_plans_interval: daily
-sync_plans_time: "2017-01-01 00:00:00 UTC"
-sync_plan_enabled: true
+satellite.account_id:           "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
+satellite.rhn_user:             "{{ lookup('env', 'RHN_USER') }}"
+satellite.rhn_password:         "{{ lookup('env', 'RHN_PASSWORD') }}"
+satellite.rhn_activation_key:   "{{ lookup('env', 'RHN_AK') }}"
+satellite.rhn_org:              "{{ lookup('env', 'RHN_ORG')}}"
+satellite.rhn_connect:          "{{ lookup('env', 'RHN_CONNECT') }}"
+satellite.content_source:       "{{ lookup('env', 'CONTENT_SOURCE') }}"
+satellite.admin_username:       "{{ lookup('env', 'FOREMAN_USER') }}"
+satellite.admin_password:       "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
+satellite.initial_organization: "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
+satellite.initial_location:     "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
+satellite.manifest:             "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
+satellite.manifest_uuid:        "{{ lookup('env', 'MANIFEST_UUID') }}"
+satellite.server_url:           "{{ https://{{ ansible_fqdn }}"
+
+#satellite.sync_plans_name:      'Nightly_Midnight_Sync'
+#satellite.sync_plans_interval:  daily
+#satellite.sync_plans_time:      "2017-01-01 00:00:00 UTC"
+#satellite.sync_plan_enabled:    true
 
 ###### Foreman Ansible Modules ###########
-satellite_settings:
+satellite.settings:
   - name: "default_download_policy"
     value: "immediate"
   - name: "unregister_delete_host"
     value: "true"
   - name: "errata_status_installable"
     value: "true"
+  - name: "name_generator_type"
+    value: "false"
+  - name: "entries_per_page"
+    value: "100"
   - name: "login_text"
     value: "I've read & consent to terms in IS user agreement."
 
-red_hat_repositories_releasever:
+satellite.red_hat_repositories_releasever:
   - label: rhel-7-server-rpms
   - label: rhel-server-rhscl-7-rpms
   - label: rhel-7-server-optional-rpms
 
-red_hat_repositories:
+satellite.red_hat_repositories:
   - label: rhel-7-server-extras-rpms
   - label: rhel-7-server-satellite-tools-6.6-rpms
   - label: rhel-7-server-satellite-maintenance-6-rpms
@@ -40,21 +49,9 @@ red_hat_repositories:
   - label: rhel-7-server-ansible-2.8-rpms
   - label: rhel-7-server-satellite-6.5-rpms
 
-host_collections_name:
-  - name: generic_hosts
-  - name: ocp_hosts
-
-content_view:
-  - name: generic_view
-  - name: ocp_content_view
-
-redhat_products:
+satellite.redhat_products:
   - product: "Red Hat Enterprise Linux Server"
   - product: "Red Hat Ansible Engine"
   - product: "Red Hat OpenShift Container Platform"
   - product: "Red Hat Software Collections for RHEL Server"
   - product: "Red Hat OpenShift Container Platform"
-
-###### Foreman Ansible Modules ###########
-
-#
