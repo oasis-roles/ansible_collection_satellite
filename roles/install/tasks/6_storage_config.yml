@@ -20,14 +20,18 @@
     vg: "{{ satellite_vg_name }}"
     pvs: "{{ satellite_data_disk }}"
 
-- name: Storage Config | Create the logical volumes to be mounted to Satellite's required dirs
+- name: >-
+  Storage Config | Create the logical volumes to be mounted to Satellite's
+  required dirs
   lvol:
     vg: "{{ satellite_vg_name }}"
     lv: "{{ item.lv_name }}"
     size: "{{ item.lv_size }}"
   with_items: "{{ satellite_req_dirs }}"
 
-- name: Storage Config | Create a filesystem on the logical volumes that were just created
+- name: >-
+  Storage Config | Create a filesystem on the logical volumes that were
+  just created
   filesystem:
     fstype: xfs
     dev: /dev/mapper/{{ satellite_vg_name }}-{{ item.lv_name }}
