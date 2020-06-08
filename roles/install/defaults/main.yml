@@ -14,7 +14,7 @@ sync_plans_name: 'Nightly_Midnight_Sync'
 sync_plans_interval: daily
 sync_plans_time: "2017-01-01 00:00:00 UTC"
 sync_plan_enabled: true
-
+satellite_fw_service_name: RH-Satellite-6
 ###### Foreman Ansible Modules ###########
 satellite_settings:
   - name: "default_download_policy"
