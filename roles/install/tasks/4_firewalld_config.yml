@@ -1,4 +1,3 @@
----
 - name: satellite | firewalld-config | Gather the installed package facts
   package_facts:
     manager: auto
@@ -37,10 +36,9 @@
   changed_when: firewalld_public_policy.stdout != 'DROP'
   register: firewalld_public_policy
 
-
-- name: satellite | firewalld-config | Enforce drop policy on firewalll public zone
+- name: satellite | firewalld-config | Enforce drop policy on firewall public zone
   command: "/usr/bin/firewall-cmd --zone public --set-target DROP --permanent"
   when: firewalld_public_policy.stdout != 'DROP'
   notify:
     - firewalld_reload
-...
+
