@@ -14,7 +14,7 @@ satellite_initial_location:     "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}
 satellite_manifest:             "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
 satellite_manifest_uuid:        "{{ lookup('env', 'MANIFEST_UUID') }}"
 satellite_server_url:           "{{ https://{{ ansible_fqdn }}"
-
+satellite_fw_service_name: RH-Satellite-6
 #satellite.sync_plans_name:      'Nightly_Midnight_Sync'
 #satellite.sync_plans_interval:  daily
 #satellite.sync_plans_time:      "2017-01-01 00:00:00 UTC"
