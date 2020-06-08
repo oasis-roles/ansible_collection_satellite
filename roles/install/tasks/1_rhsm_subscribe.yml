@@ -1,10 +1,9 @@
----
 - name: RHSM Subscribe | Disable amazon-id.conf
   lineinfile:
     path: /etc/yum/pluginconf.d/amazon-id.conf
     regexp: '^enabled=1'
     line: enabled=0
-    backrefs: yes
+    backrefs: true
 
 - name: RHSM Subscribe | Get a list of all the files in /etc/yum.repos.d
   find:
@@ -12,8 +11,7 @@
     patterns: "*.repo"
   register: repo_files
 
-- name: >-
-  RHSM Subscribe | Remove any file in /etc/yum.repos.d that isn't redhat.repo
+- name: RHSM Subscribe | Remove repo files that are not redhat.repo
   file:
     path: "{{ item.path }}"
     state: absent

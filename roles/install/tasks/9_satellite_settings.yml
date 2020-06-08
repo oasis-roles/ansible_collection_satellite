@@ -1,5 +1,3 @@
----
-
 - name: Configuring Satellite 6 server | Common Settings
   theforeman.foreman.foreman_setting:
     username: "{{ lookup('env','FOREMAN_USER') }}"

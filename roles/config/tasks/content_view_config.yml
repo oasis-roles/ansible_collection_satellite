@@ -1,5 +1,3 @@
----
-# TASKS
 - name: "Create generic_view content view"
   theforeman.foreman.katello_content_view:
     username: "{{ lookup('env','FOREMAN_USER') }}"

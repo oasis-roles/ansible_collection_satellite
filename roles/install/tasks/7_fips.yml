@@ -1,4 +1,3 @@
----
 # TASKS
 - name: Enable FIPS | Check if FIPS is enable
   shell: sysctl crypto.fips_enabled
@@ -14,7 +13,7 @@
   - name: Enable FIPS | Run dracut to rebuild initramfs
     shell: dracut --force
 
-  - name:  Enable FIPS | Edit kernel command-line to include the fips=1 argument
+  - name: Enable FIPS | Edit kernel command-line to include the fips=1 argument
     shell: >-
       grubby --update-kernel=/boot/vmlinuz-{{ ansible_kernel }} --args=fips=1
 

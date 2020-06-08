@@ -2,9 +2,7 @@
   package_facts:
     manager: auto
 
-- name: >-
-  satellite | firewalld-config | Installing firewalld package if not
-  already avaiable
+- name: satellite | firewalld-config | Installing firewalld package
   package:
     name: firewalld
     state: latest
