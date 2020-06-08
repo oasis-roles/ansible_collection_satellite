@@ -10,35 +10,34 @@
   when: rhn_connect == 'disconnect'
 
 - name: Patch system
-  import_tasks: 5_patch.yml
+  import_tasks: 3_patch.yml
 
 - name: Configure firewalld
-  import_tasks: firewalld.yml
-
+  import_tasks: 4_firewalld_config.yml
 
 - name: enable Foreman ansible modules
-  import_tasks: 3_foreman_ansible.yml
+  import_tasks: 5_foreman_ansible.yml
 
 - name: Storage Config
-  import_tasks: 4_storage_config.yml
+  import_tasks: 6_storage_config.yml
 
 - name: Enable FIPS
-  import_tasks: 6_fips.yml
+  import_tasks: 7_fips.yml
 
 - name: Satellite install
-  import_tasks: 7_satellite_install.yml
+  import_tasks: 8_satellite_install.yml
 
 - name: Configuring Satellite 6 server
-  import_tasks: 8_satellite_settings.yml
+  import_tasks: 9_satellite_settings.yml
 
 - name: Uploading Manifest
-  import_tasks: 9_manifest.yml
+  import_tasks: 10_manifest.yml
 
 - name: Enabling repos
-  import_tasks: 10_repo_management_enablerepos.yml
+  import_tasks: 11_repo_management_enablerepos.yml
 
 - name: Synchronizing repos
-  import_tasks: 11_repo_sync.yml
+  import_tasks: 12_repo_sync.yml
 
 
 e
