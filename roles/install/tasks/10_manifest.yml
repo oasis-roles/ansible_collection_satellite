@@ -1,7 +1,9 @@
 ---
 - name: Pull down manifest
   get_url:
-    url: https://subscription.rhsm.redhat.com/subscription/consumers/{{ manifest_uuid }}/export
+    url: >-
+      https://subscription.rhsm.redhat.com/subscription/consumers/
+      {{ manifest_uuid }}/export
     username: "{{ lookup('env', 'RHN_USER') }}"
     password: "{{ lookup('env', 'RHN_PASSWORD') }}"
     dest: /opt/satellite_manifest.zip
