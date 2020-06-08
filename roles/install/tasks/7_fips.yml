@@ -1,4 +1,3 @@
----
 # TASKS
 - name: Enable FIPS | Check if FIPS is enable
   shell: sysctl crypto.fips_enabled

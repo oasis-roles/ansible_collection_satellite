@@ -1,6 +1,3 @@
----
-# TASKS
-
 - name: >- Check whether Satellite is installed using foreman-maintain
     service status
   shell: foreman-maintain service status > /dev/null

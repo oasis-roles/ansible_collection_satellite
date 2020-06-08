@@ -1,4 +1,3 @@
----
 - name: RHSM Subscribe | Disable amazon-id.conf
   lineinfile:
     path: /etc/yum/pluginconf.d/amazon-id.conf

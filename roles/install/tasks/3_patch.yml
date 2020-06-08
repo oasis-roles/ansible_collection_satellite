@@ -1,4 +1,3 @@
----
 # TASKS
 - name: Patch system | yum-clean-metadata
   command: yum clean all

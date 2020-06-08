@@ -1,6 +1,3 @@
----
-# TASKS
-# Sync all repositories
 - name: Get all repositories
   theforeman.foreman.foreman_search_facts:
     username: "{{ lookup('env','FOREMAN_USER') }}"
