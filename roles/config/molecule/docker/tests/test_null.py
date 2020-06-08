@@ -6,3 +6,8 @@
 # Most tests should be written in the shared/tests directory so that they can
 # be captured by all the scenarios. Only add tests here if there are tests
 # only relevant to a particular scenario
+
+
+def test_nothing(host):
+    """pytest doesn't like an empty file"""
+    assert 1 == 1
