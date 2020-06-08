@@ -1,24 +1,18 @@
----
-# defaults file for prefab-role
-satellite_account_id:           "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
-satellite_rhn_user:             "{{ lookup('env', 'RHN_USER') }}"
-satellite_rhn_password:         "{{ lookup('env', 'RHN_PASSWORD') }}"
-satellite_rhn_activation_key:   "{{ lookup('env', 'RHN_AK') }}"
-satellite_rhn_org:              "{{ lookup('env', 'RHN_ORG')}}"
-satellite_rhn_connect:          "{{ lookup('env', 'RHN_CONNECT') }}"
-satellite_content_source:       "{{ lookup('env', 'CONTENT_SOURCE') }}"
-satellite_admin_username:       "{{ lookup('env', 'FOREMAN_USER') }}"
-satellite_admin_password:       "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
+satellite_account_id: "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
+satellite_rhn_user: "{{ lookup('env', 'RHN_USER') }}"
+satellite_rhn_password: "{{ lookup('env', 'RHN_PASSWORD') }}"
+satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
+satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
+satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
+satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
 satellite_initial_organization: "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
-satellite_initial_location:     "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
-satellite_manifest:             "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
-satellite_manifest_uuid:        "{{ lookup('env', 'MANIFEST_UUID') }}"
-satellite_server_url:           "{{ https://{{ ansible_fqdn }}"
+satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
+satellite_manifest: "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
+satellite_manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
+satellite_server_url: "{{ https://{{ ansible_fqdn }}"
 satellite_fw_service_name: RH-Satellite-6
-#satellite.sync_plans_name:      'Nightly_Midnight_Sync'
-#satellite.sync_plans_interval:  daily
-#satellite.sync_plans_time:      "2017-01-01 00:00:00 UTC"
-#satellite_sync_plan_enabled:    true
 
 ###### Foreman Ansible Modules ###########
 satellite_settings:

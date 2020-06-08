@@ -12,7 +12,7 @@
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     product: "{{ item.product.name }}"
-    repository:  "{{ item.name }}"
+    repository: "{{ item.name }}"
     organization: "{{ foreman_initial_organization }}"
   loop: "{{ repositories.resources }}"
   when: item.url  # Not all repositories have a URL
