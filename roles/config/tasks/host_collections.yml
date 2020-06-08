@@ -1,4 +1,3 @@
----
 - name: "Create default host collection"
   theforeman.foreman.katello_host_collection:
     username: "{{ lookup('env','FOREMAN_USER') }}"
