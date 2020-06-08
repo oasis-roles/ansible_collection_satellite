@@ -1,1 +1,6 @@
 # Vars for satellite_config
+satellite.yum_packages:
+  - satellite
+  - chrony
+  - sos
+  - python2-apypie
