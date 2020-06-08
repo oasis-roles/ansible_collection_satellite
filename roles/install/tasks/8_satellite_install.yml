@@ -10,7 +10,7 @@
   block:
   - name: Yum install the latest packages required for satellite
     package:
-      name: "{{ satellite_yum_packages }}"
+      name: "{{ satellite.yum_packages }}"
       state: latest
 
   - name: Install Satellite if it is not installed

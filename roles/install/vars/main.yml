@@ -1,34 +1,6 @@
----
-# vars file for prefab-role
-satellite_fw_service_name: RH-Satellite-6
-satellite_data_disk: /dev/nvme1n1
-satellite_vg_name: sat_vg01
-server_basearch: "x86_64"
-server_releasever: "7Server"
-satellite_deployment_version: "6.6"
-satellite_manifest: /opt/satellite_manifest.zip
-rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
-rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
 
-satellite_yum_packages:
+satellite.yum_packages:
   - satellite
   - chrony
   - sos
-  - puppet-foreman_scap_client
-  - scap-security-guide
-  - dracut-fips
-  - dracut-fips-aesni
-
-satellite_req_dirs:
-  - mount_point: /var/lib/pulp
-    lv_name: var_lib_pulp
-    lv_size: 520g
-  - mount_point: /var/lib/mongodb
-    lv_name: var_lib_mongodb
-    lv_size: 50g
-  - mount_point: /var/lib/pgsql
-    lv_name: var_lib_pgsql
-    lv_size: 10g
-  - mount_point: /var/spool/squid
-    lv_name: var_spool_squid
-    lv_size: 10g
+  - python2-apypie
