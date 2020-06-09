@@ -8,4 +8,4 @@
     organization: "{{ satellite_initial_organization }}"
     state: present
   with_items:
-    - "{{ host_collections_name }}"
+    - "{{ satellite_host_collections_name }}"

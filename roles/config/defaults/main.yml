@@ -3,7 +3,7 @@ satellite_config_become_user: root
 satellite_initial_organization: >-
   {{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}
 
-host_collections_name:
+satellite_host_collections_name:
   - name: generic_hosts
   - name: ocp_hosts
 
