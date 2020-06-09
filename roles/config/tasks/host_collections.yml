@@ -5,7 +5,7 @@
     server_url: "https://{{ ansible_fqdn }}"
     name: "{{ item.name }}"
     description: "{{ item.name }}"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     state: present
   with_items:
     - "{{ host_collections_name }}"

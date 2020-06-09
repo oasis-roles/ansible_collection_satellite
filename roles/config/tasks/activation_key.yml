@@ -4,7 +4,7 @@
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     name: "generic_key"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     lifecycle_environment: "Library"
     content_view: "generic_view"
     host_collections:
@@ -33,7 +33,7 @@
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     name: "ocp_masters"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     lifecycle_environment: "Library"
     content_view: "ocp_content_view"
     host_collections:
@@ -59,7 +59,7 @@
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     name: "ocp_apps"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     lifecycle_environment: "Library"
     content_view: "ocp_content_view"
     host_collections:
