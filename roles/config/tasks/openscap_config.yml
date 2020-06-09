@@ -1,4 +1,3 @@
----
 - name: satellite-openscap-config | Create Puppet environment directory for OpenScap
   file:
     dest: "/etc/puppetlabs/code/environments/{{ hostgroup.name }}"

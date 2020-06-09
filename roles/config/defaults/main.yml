@@ -1,2 +1,10 @@
 satellite_config_become: true
 satellite_config_become_user: root
+satellite_initial_organization: "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
+
+satellite_redhat_products:
+  - product: "Red Hat Enterprise Linux Server"
+  - product: "Red Hat Ansible Engine"
+  - product: "Red Hat OpenShift Container Platform"
+  - product: "Red Hat Software Collections for RHEL Server"
+  - product: "Red Hat OpenShift Container Platform"
