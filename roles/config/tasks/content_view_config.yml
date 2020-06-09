@@ -5,7 +5,7 @@
     server_url: "https://{{ ansible_fqdn }}"
     state: present
     name: "generic_view"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     repositories:
       - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
@@ -27,7 +27,7 @@
     server_url: "https://{{ ansible_fqdn }}"
     state: present
     name: "ocp_content_view"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     repositories:
       - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
@@ -46,7 +46,7 @@
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     content_view: "{{ item.name }}"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     version: "1.0"
     lifecycle_environments:
       - Library
