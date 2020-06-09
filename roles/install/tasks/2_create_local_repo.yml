@@ -11,9 +11,7 @@
     patterns: "*.repo"
   register: repo_files
 
-- name: >-
-    Create Local Repo | Remove any file in /etc/yum.repos.d that
-    isn't redhat.repo
+- name: Create Local Repo | Remove files in /etc/yum.repos.d not redhat.repo
   file:
     path: "{{ item.path }}"
     state: absent

@@ -1,7 +1,7 @@
 - name: firewalld config | Installing firewalld package if not already avaiable
   package:
     name: firewalld
-    state: latest
+    state: present
   become: true
   when: "'firewalld' not in ansible_facts.packages"
 
@@ -24,7 +24,7 @@
   changed_when: firewalld_public_policy.stdout != 'DROP'
   register: firewalld_public_policy
 
-- name:  firewalld config | Enforce drop policy on firewall public zone
+- name: firewalld config | Enforce drop policy on firewall public zone
   command: "/usr/bin/firewall-cmd --zone public --set-target DROP --permanent"
   when: firewalld_public_policy.stdout != 'DROP'
   notify:

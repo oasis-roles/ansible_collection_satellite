@@ -1,7 +1,7 @@
 - name: Storage Config | Ensure lvm2 package is installed.
   package:
     name: lvm2
-    state: latest
+    state: present
 
 - name: Storage Config | Check if drives are already mounted
   command: '/bin/mountpoint -q {{ item.mount_point }}'
@@ -16,7 +16,7 @@
 - name: Storage Config | Create volumes and file systems
   block:
 
-    - name: Storage Config | Create the directory path to Satellite's required dirs
+    - name: Storage Config | Create directory path to Satellite's required dirs
       file:
         path: "{{ item.mount_point }}"
         state: directory
@@ -41,7 +41,7 @@
         dev: /dev/mapper/{{ satellite_vg_name }}-{{ item.lv_name }}
       with_items: "{{ satellite_req_dirs }}"
 
-    - name: Storage Config | Mount the additional disk used to Satellite's data dir
+    - name: Storage Config | Mount additional disk used to Satellite's data dir
       mount:
         path: "{{ item.mount_point }}"
         src: /dev/mapper/{{ satellite_vg_name }}-{{ item.lv_name }}

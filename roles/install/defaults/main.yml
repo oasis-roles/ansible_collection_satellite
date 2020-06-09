@@ -9,7 +9,8 @@ satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
 satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
 satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
 satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
-satellite_initial_organization: "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
+satellite_initial_organization: >-
+  "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
 satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
 satellite_manifest: "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
 #satellite_manifest:             /opt/satellite_manifest.zip
@@ -26,8 +27,8 @@ satellite_rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
 satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 
 satellite_installer: >-
-  --foreman-initial-admin-username admin \
-  --foreman-initial-admin-password redhat1! \
+  --foreman-initial-admin-username "{{ satellite_admin_username }}" \
+  --foreman-initial-admin-password "{{ satellite_admin_password }}" \
   --foreman-proxy-dns-managed true \
   --foreman-proxy-dns true \
   --foreman-proxy-dns-interface eth0 \
@@ -42,7 +43,7 @@ satellite_installer: >-
   --foreman-proxy-dhcp-nameservers 192.168.122.10 \
   --foreman-proxy-tftp true \
   --foreman-proxy-tftp-managed true \
-  --foreman-proxy-tftp-servername {{ satellite_hostname }}
+  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
 
 satellite_req_dirs:
   - mount_point: /var/lib/pulp

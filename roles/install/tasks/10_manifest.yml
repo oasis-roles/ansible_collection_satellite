@@ -1,11 +1,11 @@
 - name: Manifest | Pull down manifest
   get_url:
-    #yamllint disable-line rule:line-length
+    # yamllint disable-line rule:line-length
     url: https://subscription.rhsm.redhat.com/subscription/consumers/{{ manifest_uuid }}/export
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
     dest: /opt/satellite_manifest.zip
-    validate_certs: no
+    validate_certs: false
   when: rhn_connect != 'disconnect'
 
 - name: Manifest | Copy manifest from local system to remote target
@@ -18,7 +18,7 @@
   when: rhn_connect == 'disconnect'
 
 - name: Manifest | Upload the manifest
-  theforeman.foreman.katello_manifest:
+  oasis_roles.satellite.katello_manifest:
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
     server_url: "{{ satellite_server_url }}"

@@ -24,7 +24,7 @@
     activationkey: "{{ satellite_rhn_activation_key }}"
     org_id: "{{ satellite_rhn_org }}"
     pool: '^(Red Hat Satellite Infrastructure Subscription)$'
-    force_register: yes
+    force_register: true
 
 #Enabling the repos
 - name: RHSM Subscribe | Enabling the satellite repos
@@ -37,4 +37,4 @@
     --enable rhel-7-server-ansible-2.8-rpms
   tags:
     - "rhn"
-    - "skip_ansible_lint" # ANSIBLE0012
+    - "skip_ansible_lint"  # ANSIBLE0012
