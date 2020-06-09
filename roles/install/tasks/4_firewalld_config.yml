@@ -24,7 +24,7 @@
   changed_when: firewalld_public_policy.stdout != 'DROP'
   register: firewalld_public_policy
 
-- name:  firewalld config | Enforce drop policy on firewall public zone
+- name: firewalld config | Enforce drop policy on firewall public zone
   command: "/usr/bin/firewall-cmd --zone public --set-target DROP --permanent"
   when: firewalld_public_policy.stdout != 'DROP'
   notify:

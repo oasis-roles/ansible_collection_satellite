@@ -9,7 +9,8 @@ satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
 satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
 satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
 satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
-satellite_initial_organization: "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
+satellite_initial_organization: >-
+  "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
 satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
 satellite_manifest: "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
 #satellite_manifest:             /opt/satellite_manifest.zip

@@ -13,17 +13,10 @@
 
   - name: Install | Satellite if it is not installed
     shell: "satellite-installer --scenario satellite {{ satellite_installer }}"
-       #--foreman-admin-password {{ satellite_admin_password }} 
-       #--enable-foreman-proxy-plugin-openscap 
-       #--foreman-initial-organization {{ foreman_initial_organization }} 
-       #--foreman-initial-location {{ foreman_initial_location }} 
-       #--foreman-proxy-dhcp false 
-       #--foreman-proxy-dns false 
-       #--foreman-proxy-tftp false"
 
   - name: >-
-    Move performance tuning yaml to
-    /etc/foreman-installer/custom-hiera.yaml
+      Move performance tuning yaml to
+      /etc/foreman-installer/custom-hiera.yaml
     copy:
       src: files/custom-hiera.yaml
       dest: /etc/foreman-installer/custom-hiera.yaml

@@ -1,7 +1,7 @@
 - name: Patch system | yum-clean-metadata
   command: yum clean all
   args:
-    warn: no
+    warn: false
 
 - name: Patch system | Remove not needed packages
   package:
@@ -12,22 +12,23 @@
   shell: yum -q check-update > /dev/null
   register: patch_lvl
   failed_when: patch_lvl.rc not in [100,0]
-  become: yes
+  become: true
 
 - name:
   block:
-  - name: Patch system | Patching the system
-    package:
-      name: "*"
-      state: latest
 
-  - name: Patch system | rebooting on new kernel
-    reboot:
+    - name: Patch system | Patching the system
+      package:
+        name: "*"
+        state: latest
 
-  - name: >-
-      Patch system | Wait 600 seconds for target connection to become
-      reachable/usable
-    wait_for_connection:
+    - name: Patch system | rebooting on new kernel
+      reboot:
+
+    - name: >-
+        Patch system | Wait 600 seconds for target connection to become
+        reachable/usable
+      wait_for_connection:
 
   when: patch_lvl.rc == 100
 
