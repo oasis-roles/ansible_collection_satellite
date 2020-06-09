@@ -1,5 +1,5 @@
 - name: "Create generic_view content view"
-  katello_content_view:
+  oasis_roles.satellite.katello_content_view:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
@@ -28,7 +28,7 @@
         product: "Red Hat Enterprise Linux Server"
 
 - name: "Create ocp_content_view content view"
-  katello_content_view:
+  oasis_roles.satellite.katello_content_view:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
@@ -50,7 +50,7 @@
         product: "Red Hat OpenShift Container Platform"
 
 - name: "Ensure content views are published"
-  katello_content_view_version:
+  oasis_roles.satellite.katello_content_view_version:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"

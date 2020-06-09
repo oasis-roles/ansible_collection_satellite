@@ -1,5 +1,5 @@
 - name: "Create generic_key activation key"
-  katello_activation_key:
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
@@ -28,7 +28,7 @@
     release_version: 7Server
 
 - name: "Create ocp_masters activation key"
-  katello_activation_key:
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
@@ -54,7 +54,7 @@
     release_version: 7Server
 
 - name: "Create ocp_apps activation key"
-  katello_activation_key:
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
