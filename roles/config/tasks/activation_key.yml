@@ -1,10 +1,10 @@
 - name: "Create generic_key activation key"
-  theforeman.foreman.katello_activation_key:
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     name: "generic_key"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     lifecycle_environment: "Library"
     content_view: "generic_view"
     host_collections:
@@ -28,12 +28,12 @@
     release_version: 7Server
 
 - name: "Create ocp_masters activation key"
-  theforeman.foreman.katello_activation_key:
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     name: "ocp_masters"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     lifecycle_environment: "Library"
     content_view: "ocp_content_view"
     host_collections:
@@ -54,12 +54,12 @@
     release_version: 7Server
 
 - name: "Create ocp_apps activation key"
-  theforeman.foreman.katello_activation_key:
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     name: "ocp_apps"
-    organization: "{{ foreman_initial_organization }}"
+    organization: "{{ satellite_initial_organization }}"
     lifecycle_environment: "Library"
     content_view: "ocp_content_view"
     host_collections:

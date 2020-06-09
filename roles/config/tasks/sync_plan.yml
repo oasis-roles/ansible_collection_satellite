@@ -1,5 +1,5 @@
 - name: "Create or update daily sync plan"
-  theforeman.foreman.katello_sync_plan:
+  oasis_roles.satellite.katello_sync_plan:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "https://{{ ansible_fqdn }}"
