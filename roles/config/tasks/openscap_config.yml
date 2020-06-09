@@ -18,10 +18,10 @@
     password: "{{ satellite_admin_password }}"
     headers:
       Content-Type: "application/json"
-    validate_certs: no
-    return_content: yes
+    validate_certs: false
+    return_content: true
     body_format: json
-    force_basic_auth: yes
+    force_basic_auth: true
   register: result
   failed_when: false
 
@@ -71,15 +71,15 @@
 
 - name: "satellite-openscap-config | Create {{ hostgroup.name }}"
   shell: >
-    hammer hostgroup create \
-      --name "{{ hostgroup.name }}" \
-      --organization "{{ lookup('env','FOREMAN_INITIAL_ORGANIZATION') }}" \
-      --location "{{ lookup('env','FOREMAN_INITIAL_LOCATION') }}" \
-      --puppet-ca-proxy "{{ ansible_fqdn }}" \
-      --puppet-ca-proxy "{{ ansible_fqdn }}" \
-      --content-source "{{ ansible_fqdn }}" \
-      --environment "{{ hostgroup.name }}" \
-      --architecture "{{ hostgroup.architecture }}" \
+    hammer hostgroup create 
+      --name "{{ hostgroup.name }}"
+      --organization "{{ lookup('env','FOREMAN_INITIAL_ORGANIZATION') }}"
+      --location "{{ lookup('env','FOREMAN_INITIAL_LOCATION') }}"
+      --puppet-ca-proxy "{{ ansible_fqdn }}"
+      --puppet-ca-proxy "{{ ansible_fqdn }}"
+      --content-source "{{ ansible_fqdn }}"
+      --environment "{{ hostgroup.name }}"
+      --architecture "{{ hostgroup.architecture }}"
       --puppet-classes "{{ openscap_puppet_classes }}"
   register: hg_create
   changed_when: ("Hostgroup created" in hg_create.stdout)
@@ -88,15 +88,15 @@
 
 - name: satellite-openscap-config | Create openscap audit policy
   shell: >
-    hammer policy create \
-      --name "default_openscap_rhel{{ ansible_distribution_major_version }}" \
-      --hostgroups "{{ hostgroup.name }}" \
-      --organization "{{ hostgroup.organization }}" \
-      --location "{{ hostgroup.location }}" \
-      #yamllint disable-line rule:line-length
-      --scap-content "Red Hat rhel{{ ansible_distribution_major_version }} default content" \
-      --scap-content-profile-id "{{ hostgroup.scap_profile_id }}" \
-      --period "{{ hostgroup.scap_scan_period }}" \
+    hammer policy create
+      --name "default_openscap_rhel{{ ansible_distribution_major_version }}"
+      --hostgroups "{{ hostgroup.name }}"
+      --organization "{{ hostgroup.organization }}"
+      --location "{{ hostgroup.location }}"
+      --scap-content
+      "Red Hat rhel{{ ansible_distribution_major_version }} default content"
+      --scap-content-profile-id "{{ hostgroup.scap_profile_id }}"
+      --period "{{ hostgroup.scap_scan_period }}"
       --weekday "{{ hostgroup.scap_scan_day }}"
   when: hg_create.changed
 
