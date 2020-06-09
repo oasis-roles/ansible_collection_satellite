@@ -10,7 +10,7 @@
     mode: '0755'
 
 - name: Enable repos | RHEL repositories with label that need releasever
-  theforeman.foreman.katello_repository_set:
+  oasis_roles.satellite.katello_repository_set:
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
     server_url: "{{ satellite_server_url }}"
@@ -24,7 +24,7 @@
     - "{{ satellite_red_hat_repositories_releasever }}"
 
 - name: Enable repos | RHEL repositories with label
-  theforeman.foreman.katello_repository_set:
+  oasis_roles.satellite.katello_repository_set:
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
     server_url: "{{ satellite_server_url }}"

@@ -18,7 +18,7 @@
   when: rhn_connect == 'disconnect'
 
 - name: Manifest | Upload the manifest
-  theforeman.foreman.katello_manifest:
+  oasis_roles.satellite.katello_manifest:
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
     server_url: "{{ satellite_server_url }}"

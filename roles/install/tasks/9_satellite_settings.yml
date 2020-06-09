@@ -1,5 +1,5 @@
 - name: Satellite Settings | Common Settings
-  theforeman.foreman.foreman_setting:
+  oasis_roles.satellite.foreman_setting:
     username: "{{ satellite_admin_user }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
@@ -9,7 +9,7 @@
     - "{{ satellite_settings }}"
 
 - name: Satellite Settings | Disconnected Settings
-  theforeman.foreman.foreman_setting:
+  oasis_roles.satellite.foreman_setting:
     username: "{{ satellite_admin_user }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"

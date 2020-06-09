@@ -16,9 +16,9 @@
 #      enabled = 1
 #      gpgcheck = 0
 #
-#- name: Foreman Ansible Modules | install ansible-collection-theforeman-foreman
+#- name: Foreman Modules | install ansible-collection-oasis_roles.satellite
 #  package:
-#    name: ansible-collection-theforeman-foreman
+#    name: ansible-collection-oasis_roles.satellite
 #    state: present
 
 - name: Foreman Ansible | Copy python2 apypie rpm file to server
