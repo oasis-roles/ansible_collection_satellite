@@ -101,7 +101,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 
-from ansible.module_utils.foreman_helper import ForemanEntityAnsibleModule, parameter_value_to_str
+from ansible_collections.oasis_roles.satellite.plugins.module_utils.foreman_helper import ForemanEntityAnsibleModule, parameter_value_to_str
 
 
 class ForemanCommonParameterModule(ForemanEntityAnsibleModule):

@@ -130,7 +130,7 @@ resources:
   type: list
 '''
 
-from ansible.module_utils.foreman_helper import ForemanAnsibleModule
+from ansible_collections.oasis_roles.satellite.plugins.module_utils.foreman_helper import ForemanAnsibleModule
 
 
 def main():

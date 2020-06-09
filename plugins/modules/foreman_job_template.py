@@ -285,7 +285,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 import os
-from ansible.module_utils.foreman_helper import (
+from ansible_collections.oasis_roles.satellite.plugins.module_utils.foreman_helper import (
     ForemanTaxonomicEntityAnsibleModule,
     parse_template,
     parse_template_from_file,

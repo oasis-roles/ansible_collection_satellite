@@ -285,7 +285,7 @@ EXAMPLES = '''
 RETURN = ''' # '''
 
 
-from ansible.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
+from ansible_collections.oasis_roles.satellite.plugins.module_utils.foreman_helper import ForemanTaxonomicEntityAnsibleModule
 
 
 def get_provider_info(provider):
