@@ -9,13 +9,20 @@
     repositories:
       - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
-      - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server"
+        #yamllint disable-line rule:line-length
+      - name: >-
+          Red Hat Software Collections RPMs for Red
+          Hat Enterprise Linux 7 Server x86_64 7Server
         product: "Red Hat Software Collections for RHEL Server"
       - name: "Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64"
         product: "Red Hat Enterprise Linux Server"
-      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server"
+      - name: >-
+          Red Hat Enterprise Linux 7 Server -
+          Optional RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
-      - name: "Red Hat Ansible Engine 2.6 RPMs for Red Hat Enterprise Linux 7 Server x86_64"
+      - name: >-
+          Red Hat Ansible Engine 2.6 RPMs for
+          Red Hat Enterprise Linux 7 Server x86_64
         product: "Red Hat Ansible Engine"
       - name: "Red Hat Satellite Tools 6.6 for RHEL 7 Server RPMs x86_64"
         product: "Red Hat Enterprise Linux Server"
@@ -35,7 +42,9 @@
         product: "Red Hat Enterprise Linux Server"
       - name: "Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64"
         product: "Red Hat Enterprise Linux Server"
-      - name: "Red Hat Ansible Engine 2.6 RPMs for Red Hat Enterprise Linux 7 Server x86_64"
+      - name: >-
+          Red Hat Ansible Engine 2.6 RPMs for
+          Red Hat Enterprise Linux 7 Server x86_64
         product: "Red Hat Ansible Engine"
       - name: "Red Hat OpenShift Container Platform 3.11 RPMs x86_64"
         product: "Red Hat OpenShift Container Platform"
