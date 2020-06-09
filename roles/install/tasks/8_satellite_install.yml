@@ -1,18 +1,21 @@
 - name: Install | Check whether Satellite is installed using >-
         foreman-maintain service status
-  shell: foreman-maintain service status > /dev/null
+  command: foreman-maintain service status > /dev/null
   register: check_satellite_installed
   failed_when: check_satellite_installed.rc not in [127,1,0]
+  changed_when: true
 
 - name:
   block:
-  - name: Install | Yum install the latest packages required for satellite
+  - name: Install | Yum install the packages required for satellite
     package:
       name: "{{ satellite_yum_packages }}"
-      state: latest
+      state: present
 
   - name: Install | Satellite if it is not installed
-    shell: "satellite-installer --scenario satellite {{ satellite_installer }}"
+    command: >-
+       satellite-installer --scenario satellite {{ satellite_installer }}
+    changed_when: true
 
   - name: >-
       Move performance tuning yaml to
@@ -24,6 +27,7 @@
       group: root
 
   - name: Install | Activation of the performance tuning
-    shell: satellite-installer
+    command: satellite-installer
+    changed_when: true
 
   when: check_satellite_installed.rc == 127

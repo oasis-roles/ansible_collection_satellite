@@ -1,7 +1,7 @@
 - name: firewalld config | Installing firewalld package if not already avaiable
   package:
     name: firewalld
-    state: latest
+    state: present
   become: true
   when: "'firewalld' not in ansible_facts.packages"
 

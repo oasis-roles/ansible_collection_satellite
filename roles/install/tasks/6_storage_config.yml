@@ -1,7 +1,7 @@
 - name: Storage Config | Ensure lvm2 package is installed.
   package:
     name: lvm2
-    state: latest
+    state: present
 
 - name: Storage Config | Check if drives are already mounted
   command: '/bin/mountpoint -q {{ item.mount_point }}'
