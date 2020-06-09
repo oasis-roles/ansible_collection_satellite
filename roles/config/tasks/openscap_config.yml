@@ -98,6 +98,7 @@
       --scap-content-profile-id "{{ hostgroup.scap_profile_id }}"
       --period "{{ hostgroup.scap_scan_period }}"
       --weekday "{{ hostgroup.scap_scan_day }}"
-  when: hg_create.changed
+  when: hg_create.changed  # noqa 503
+
 
 ...
