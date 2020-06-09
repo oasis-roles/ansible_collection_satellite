@@ -3,7 +3,7 @@
     path: /etc/yum/pluginconf.d/amazon-id.conf
     regexp: '^enabled=1'
     line: enabled=0
-    backrefs: yes
+    backrefs: true
 
 - name: Create Local Repo | Get a list of all the files in /etc/yum.repos.d
   find:
@@ -12,7 +12,7 @@
   register: repo_files
 
 - name: >-
-    Create Local Repo | Remove any file in /etc/yum.repos.d that 
+    Create Local Repo | Remove any file in /etc/yum.repos.d that
     isn't redhat.repo
   file:
     path: "{{ item.path }}"
