@@ -1,4 +1,3 @@
----
 - name: "Create generic_key activation key"
   theforeman.foreman.katello_activation_key:
     username: "{{ lookup('env','FOREMAN_USER') }}"

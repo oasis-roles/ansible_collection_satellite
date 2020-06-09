@@ -1,7 +1,5 @@
----
-# TASKS
-
-- name: Install | Check whether Satellite is installed using foreman-maintain service status
+- name: Install | Check whether Satellite is installed using >-
+        foreman-maintain service status
   shell: foreman-maintain service status > /dev/null
   register: check_satellite_installed
   failed_when: check_satellite_installed.rc not in [127,1,0]
@@ -23,7 +21,9 @@
        #--foreman-proxy-dns false 
        #--foreman-proxy-tftp false"
 
-  - name: Install | Move performance tuning yaml to /etc/foreman-installer/custom-hiera.yaml
+  - name: >-
+    Move performance tuning yaml to
+    /etc/foreman-installer/custom-hiera.yaml
     copy:
       src: files/custom-hiera.yaml
       dest: /etc/foreman-installer/custom-hiera.yaml

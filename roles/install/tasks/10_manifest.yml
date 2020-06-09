@@ -1,4 +1,3 @@
----
 - name: Manifest | Pull down manifest
   get_url:
     url: https://subscription.rhsm.redhat.com/subscription/consumers/{{ manifest_uuid }}/export

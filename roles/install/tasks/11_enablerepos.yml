@@ -1,4 +1,3 @@
----
 - name: Enabling repos | Check to see if localhost is running Satellite
   shell: command -v hammer >/dev/null 2>&1
   register: is_hammer_exist

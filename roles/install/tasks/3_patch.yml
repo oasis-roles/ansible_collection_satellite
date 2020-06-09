@@ -1,5 +1,3 @@
----
-# TASKS
 - name: Patch system | yum-clean-metadata
   command: yum clean all
   args:
@@ -26,7 +24,9 @@
   - name: Patch system | rebooting on new kernel
     reboot:
 
-  - name: Patch system | Wait 600 seconds for target connection to become reachable/usable
+  - name: >-
+      Patch system | Wait 600 seconds for target connection to become
+      reachable/usable
     wait_for_connection:
 
   when: patch_lvl.rc == 100

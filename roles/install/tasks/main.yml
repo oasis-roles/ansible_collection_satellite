@@ -1,6 +1,3 @@
----
-# tasks file for satellite role
-
 - name: Main | Rhsm Subscribe
   import_tasks: 1_rhsm_subscribe.yml
   when: rhn_connect != 'disconnect'
