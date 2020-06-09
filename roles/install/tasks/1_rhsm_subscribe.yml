@@ -21,13 +21,13 @@
 - name: RHSM Subscribe | Using an Activation Key for register to Red Hat CDN
   redhat_subscription:
     state: present
-    activationkey: "{{ rhn_activation_key }}"
-    org_id: "{{ rhn_org }}"
+    activationkey: "{{ satellite_rhn_activation_key }}"
+    org_id: "{{ satellite_rhn_org }}"
     pool: '^(Red Hat Satellite Infrastructure Subscription)$'
     force_register: yes
 
 #Enabling the repos
-- name: "RHSM Subscribe | Enabling the satellite repos"
+- name: RHSM Subscribe | Enabling the satellite repos
   command: >-
     /usr/sbin/subscription-manager repos --disable '*'
     --enable rhel-7-server-satellite-{{ satellite_deployment_version }}-rpms

@@ -1,4 +1,4 @@
-- name: Pull down manifest
+- name: Manifest | Pull down manifest
   get_url:
     url: https://subscription.rhsm.redhat.com/subscription/consumers/{{ manifest_uuid }}/export
     username: "{{ satellite_rhn_user }}"
@@ -7,7 +7,7 @@
     validate_certs: no
   when: rhn_connect != 'disconnect'
 
-- name: Copy manifest from local system to remote target
+- name: Manifest | Copy manifest from local system to remote target
   copy:
     src: "{{ satellite_manifest }}"
     dest: /opt/satellite_manifest.zip
@@ -16,7 +16,7 @@
     mode: 0640
   when: rhn_connect == 'disconnect'
 
-- name: "Upload the manifest"
+- name: Manifest | Upload the manifest
   theforeman.foreman.katello_manifest:
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"

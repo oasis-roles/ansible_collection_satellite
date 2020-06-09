@@ -1,15 +1,15 @@
-- name: satellite | firewalld-config | Gather the installed package facts
+- name: firewalld-config | Gather the installed package facts
   package_facts:
     manager: auto
 
-- name: satellite | firewalld-config | Installing firewalld package
+- name: firewalld-config | Installing firewalld package if not already avaiable
   package:
     name: firewalld
     state: latest
   become: true
   when: "'firewalld' not in ansible_facts.packages"
 
-- name: satellite | firewalld-config | Start firewalld service
+- name: firewalld-config | Start firewalld service
   service:
     name: firewalld
     state: started
@@ -25,7 +25,7 @@
     permanent: true
     immediate: true
 
-- name: satellite | firewalld-config | Redirect port 80 (HTTP) to 443 (HTTPS)
+- name: firewalld-config | Redirect port 80 (HTTP) to 443 (HTTPS)
   firewalld:
     rich_rule: rule family=ipv4 forward-port port=80 protocol=tcp to-port=443
     zone:      public
@@ -33,7 +33,7 @@
     permanent: true
     immediate: true
 
-- name: satellite | firewalld-config | Checking firewalld target policy
+- name: firewalld-config | Checking firewalld target policy
   command: "/usr/bin/firewall-cmd --zone public --get-target --permanent"
   changed_when: firewalld_public_policy.stdout != 'DROP'
   register: firewalld_public_policy
