@@ -1,11 +1,11 @@
 - name: "Create generic_view content view"
-  theforeman.foreman.katello_content_view:
+  katello_content_view:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     state: present
     name: "generic_view"
-    organization: "{{ satellite_initial_organization }}"
+    organization: "{{ foreman_initial_organization }}"
     repositories:
       - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
@@ -28,13 +28,13 @@
         product: "Red Hat Enterprise Linux Server"
 
 - name: "Create ocp_content_view content view"
-  theforeman.foreman.katello_content_view:
+  katello_content_view:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     state: present
     name: "ocp_content_view"
-    organization: "{{ satellite_initial_organization }}"
+    organization: "{{ foreman_initial_organization }}"
     repositories:
       - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
@@ -50,12 +50,12 @@
         product: "Red Hat OpenShift Container Platform"
 
 - name: "Ensure content views are published"
-  theforeman.foreman.katello_content_view_version:
+  katello_content_view_version:
     username: "{{ lookup('env','FOREMAN_USER') }}"
     password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
     server_url: "https://{{ ansible_fqdn }}"
     content_view: "{{ item.name }}"
-    organization: "{{ satellite_initial_organization }}"
+    organization: "{{ foreman_initial_organization }}"
     version: "1.0"
     lifecycle_environments:
       - Library
