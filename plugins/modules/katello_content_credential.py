@@ -69,7 +69,7 @@ EXAMPLES = '''
 
 RETURN = ''' # '''
 
-from ansible.module_utils.foreman_helper import KatelloEntityAnsibleModule
+from ansible_collections.oasis_roles.satellite.plugins.module_utils.foreman_helper import KatelloEntityAnsibleModule
 
 
 class KatelloContentCredentialModule(KatelloEntityAnsibleModule):

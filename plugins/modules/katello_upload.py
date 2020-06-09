@@ -78,7 +78,7 @@ import os
 import traceback
 
 from ansible.module_utils._text import to_bytes
-from ansible.module_utils.foreman_helper import KatelloAnsibleModule
+from ansible_collections.oasis_roles.satellite.plugins.module_utils.foreman_helper import KatelloAnsibleModule
 
 try:
     from debian import debfile
