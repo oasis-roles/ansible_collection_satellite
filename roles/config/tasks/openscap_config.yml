@@ -62,8 +62,8 @@
     password: "{{ satellite_admin_password }}"
     headers:
       Content-Type: "application/json"
-    validate_certs: no
-    return_content: yes
+    validate_certs: false
+    return_content: true
     body_format: json
     force_basic_auth: true
   register: result
@@ -71,7 +71,7 @@
 
 - name: "satellite-openscap-config | Create {{ hostgroup.name }}"
   shell: >
-    hammer hostgroup create 
+    hammer hostgroup create
       --name "{{ hostgroup.name }}"
       --organization "{{ lookup('env','FOREMAN_INITIAL_ORGANIZATION') }}"
       --location "{{ lookup('env','FOREMAN_INITIAL_LOCATION') }}"
