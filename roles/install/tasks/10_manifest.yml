@@ -6,7 +6,7 @@
     password: "{{ satellite_rhn_password }}"
     dest: /opt/satellite_manifest.zip
     validate_certs: false
-  when: rhn_connect != 'disconnect'
+  when: satellite_rhn_connect != 'disconnect'
 
 - name: Manifest | Copy manifest from local system to remote target
   copy:
@@ -15,7 +15,7 @@
     owner: root
     group: root
     mode: 0640
-  when: rhn_connect == 'disconnect'
+  when: satellite_rhn_connect == 'disconnect'
 
 - name: Manifest | Upload the manifest
   oasis_roles.satellite.katello_manifest:

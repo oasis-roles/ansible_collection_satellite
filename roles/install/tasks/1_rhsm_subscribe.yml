@@ -1,9 +1,15 @@
+- name: RHSM Subscribe | check if amazon-id.conf file exists
+  stat:
+    path: /etc/yum/pluginconf.d/amazon-id.conf
+  register: amazon_id_file
+
 - name: RHSM Subscribe | Disable amazon-id.conf
   lineinfile:
     path: /etc/yum/pluginconf.d/amazon-id.conf
     regexp: '^enabled=1'
     line: enabled=0
     backrefs: true
+  when: amazon_id_file.stat.exists == true
 
 - name: RHSM Subscribe | Get a list of all the files in /etc/yum.repos.d
   find:

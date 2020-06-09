@@ -1,10 +1,10 @@
 - name: Main | Rhsm Subscribe
   import_tasks: 1_rhsm_subscribe.yml
-  when: rhn_connect != 'disconnect'
+  when: satellite_rhn_connect != 'disconnect'
 
 - name: Main | Create Local Repo
   import_tasks: 2_create_local_repo.yml
-  when: rhn_connect == 'disconnect'
+  when: satellite_rhn_connect == 'disconnect'
 
 - name: Main | Patch system
   import_tasks: 3_patch.yml
