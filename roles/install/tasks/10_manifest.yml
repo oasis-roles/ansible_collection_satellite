@@ -1,6 +1,6 @@
 - name: Manifest | Pull down manifest
   get_url:
-    # yamllint disable-line rule:line-length
+    #yamllint disable-line rule:line-length
     url: https://subscription.rhsm.redhat.com/subscription/consumers/{{ manifest_uuid }}/export
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
