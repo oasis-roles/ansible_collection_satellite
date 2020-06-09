@@ -18,7 +18,7 @@
         override: enabled
       - label: rhel-7-server-extras-rpms
         override: enabled
-      - label: rhel-7-server-ansible-2.6-rpms
+      - label: rhel-7-server-ansible-2.8-rpms
         override: enabled
       - label: rhel-7-server-satellite-tools-6.6-rpms
         override: enabled
@@ -44,7 +44,7 @@
     content_overrides:
       - label: rhel-7-server-extras-rpms
         override: enabled
-      - label: rhel-7-server-ansible-2.6-rpms
+      - label: rhel-7-server-ansible-2.8-rpms
         override: enabled
       - label: rhel-7-server-satellite-tools-6.5-rpms
         override: enabled
@@ -74,7 +74,7 @@
     content_overrides:
       - label: rhel-7-server-extras-rpms
         override: enabled
-      - label: rhel-7-server-ansible-2.6-rpms
+      - label: rhel-7-server-ansible-2.8-rpms
         override: enabled
       - label: rhel-7-server-satellite-tools-6.5-rpms
         override: enabled

@@ -43,9 +43,9 @@
       enabled = 1
       gpgcheck = 0
 
-      [rhel-7-server-satellite-6.6-rpms]
-      baseurl = "{{ satellite_content_source }}/content/dist/rhel/server/7/7Server/x86_64/satellite/6.5/os/"
-      name = Red Hat Satellite 6.5 (for RHEL 7 Server) (RPMs)
+      [rhel-7-server-satellite-{{ satellite_deployment_version }}-rpms]
+      baseurl = "{{ satellite_content_source }}/content/dist/rhel/server/7/7Server/x86_64/satellite/{{ satellite_deployment_version }}/os/"
+      name = Red Hat Satellite {{ satellite_deployment_version }} (for RHEL 7 Server) (RPMs)
       enabled = 1
       gpgcheck = 0
 
