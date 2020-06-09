@@ -3,7 +3,6 @@
     name: firewalld
     state: present
   become: true
-  when: "'firewalld' not in ansible_facts.packages"
 
 - name: firewalld config | Start firewalld service
   service:
