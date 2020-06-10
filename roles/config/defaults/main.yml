@@ -13,3 +13,45 @@ satellite_redhat_products:
   - product: "Red Hat OpenShift Container Platform"
   - product: "Red Hat Software Collections for RHEL Server"
   - product: "Red Hat OpenShift Container Platform"
+
+activation_keys:
+  - name: KVM_AK
+    lifecycle_environment: "{{ prod_lifecycle_env }}"
+    content_view: RHEL7_KVM_CCV
+    host_collections:
+      - KVMHOSTS_HC
+    subscriptions:
+      - name: Red Hat Enterprise Linux Server with Smart Management, 
+              Standard (Physical or Virtual Nodes)
+    content_overrides:
+      - label: rhel-7-server-ansible-2.8-rpms
+        override: enabled
+      - label: rhel-7-server-extras-rpms
+        override: enabled
+      - label: rhel-7-server-optional-rpms
+        override: enabled
+      - label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
+        override: enabled
+    auto_attach: true
+    release_version: 7Server
+    service_level: Standard
+
+  - name: VM_AK
+    lifecycle_environment: "{{ prod_lifecycle_env }}"
+    content_view: 'CV_RHEL7Server'
+    host_collections:
+      - VMHOSTS_HC
+    subscriptions:
+      - name: Red Hat Enterprise Linux Server with Smart Management, 
+              Standard (Physical or Virtual Nodes)
+    content_overrides:
+      - label: rhel-server-rhscl-7-rpms
+        override: enabled
+      - label: rhel-7-server-optional-rpms
+        override: enabled
+      - label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
+        override: enabled
+    auto_attach: true
+    release_version: 7Server
+    service_level: Standard
+
