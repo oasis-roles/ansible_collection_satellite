@@ -1,0 +1,84 @@
+- name: "Create generic_key activation key"
+  oasis_roles.satellite.katello_activation_key:
+    username: "{{ lookup('env','FOREMAN_USER') }}"
+    password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    name: "generic_key"
+    organization: "{{ satellite_initial_organization }}"
+    lifecycle_environment: "Library"
+    content_view: "generic_view"
+    host_collections:
+      - generic_hosts
+    subscriptions:
+      - name: >-
+          Red Hat Enterprise Linux Server with Smart Management +
+          Satellite, Premium (Physical or Virtual Nodes)
+    content_overrides:
+      - label: rhel-7-server-optional-rpms
+        override: enabled
+      - label: rhel-7-server-extras-rpms
+        override: enabled
+      - label: rhel-7-server-ansible-2.8-rpms
+        override: enabled
+      - label: rhel-7-server-satellite-tools-6.6-rpms
+        override: enabled
+      - label: rhel-server-rhscl-7-rpms
+        override: enabled
+    auto_attach: false
+    release_version: 7Server
+
+- name: "Create ocp_masters activation key"
+  oasis_roles.satellite.katello_activation_key:
+    username: "{{ lookup('env','FOREMAN_USER') }}"
+    password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    name: "ocp_masters"
+    organization: "{{ satellite_initial_organization }}"
+    lifecycle_environment: "Library"
+    content_view: "ocp_content_view"
+    host_collections:
+      - ocp_hosts
+    subscriptions:
+      - name: >-
+          Red Hat OpenShift Container Platform Broker/Master Infrastructure
+    content_overrides:
+      - label: rhel-7-server-extras-rpms
+        override: enabled
+      - label: rhel-7-server-ansible-2.8-rpms
+        override: enabled
+      - label: rhel-7-server-satellite-tools-6.5-rpms
+        override: enabled
+      - label: rhel-7-server-ose-3.11-rpms
+        override: enabled
+    auto_attach: false
+    release_version: 7Server
+
+- name: "Create ocp_apps activation key"
+  oasis_roles.satellite.katello_activation_key:
+    username: "{{ lookup('env','FOREMAN_USER') }}"
+    password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    name: "ocp_apps"
+    organization: "{{ satellite_initial_organization }}"
+    lifecycle_environment: "Library"
+    content_view: "ocp_content_view"
+    host_collections:
+      - ocp_hosts
+    subscriptions:
+      - name: >-
+          Red Hat OpenShift Container Platform with Runtimes,
+          Premium, (2 Cores or 4 vCPUs)
+      - name: >-
+          Red Hat OpenShift Container Platform with Runtimes,
+          Premium, (2 Cores or 4 vCPUs)
+    content_overrides:
+      - label: rhel-7-server-extras-rpms
+        override: enabled
+      - label: rhel-7-server-ansible-2.8-rpms
+        override: enabled
+      - label: rhel-7-server-satellite-tools-6.5-rpms
+        override: enabled
+      - label: rhel-7-server-ose-3.11-rpms
+        override: enabled
+    auto_attach: false
+    release_version: 7Server

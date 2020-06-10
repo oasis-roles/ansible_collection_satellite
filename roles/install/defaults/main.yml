@@ -21,7 +21,7 @@ satellite_data_disk: /dev/nvme1n1
 satellite_vg_name: sat_vg01
 satellite_server_basearch: "x86_64"
 satellite_server_releasever: "7Server"
-satellite_deployment_version: "6.7"
+satellite_version: "6.7"
 satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
 satellite_rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
 satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
@@ -81,10 +81,10 @@ satellite_red_hat_repositories_releasever:
 
 satellite_red_hat_repositories:
   - label: rhel-7-server-extras-rpms
-  - label: rhel-7-server-satellite-tools-{{ satellite_deployment_version }}-rpms
+  - label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
   - label: rhel-7-server-satellite-maintenance-6-rpms
   - label: rhel-7-server-ansible-2.8-rpms
-  - label: rhel-7-server-satellite-{{ satellite_deployment_version }}-rpms
+  - label: rhel-7-server-satellite-{{ satellite_version }}-rpms
 
 satellite_redhat_products:
   - product: "Red Hat Enterprise Linux Server"
