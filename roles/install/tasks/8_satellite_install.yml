@@ -1,9 +1,10 @@
-- name: Install | Check whether Satellite is installed using >-
+- name: Install | Check whether Satellite is installed using
         foreman-maintain service status
-  command: foreman-maintain service status > /dev/null
+  shell: foreman-maintain service status > /dev/null
   register: check_satellite_installed
   failed_when: check_satellite_installed.rc not in [127,1,0]
-  changed_when: true
+  changed_when: false
+
 
 - name:
   block:
@@ -15,10 +16,8 @@
   - name: Install | Satellite if it is not installed
     command: >-
        satellite-installer --scenario satellite {{ satellite_installer }}
-    changed_when: true
 
-  - name: >-
-      Move performance tuning yaml to
+  - name: Move performance tuning yaml to
       /etc/foreman-installer/custom-hiera.yaml
     copy:
       src: files/custom-hiera.yaml
@@ -28,6 +27,5 @@
 
   - name: Install | Activation of the performance tuning
     command: satellite-installer
-    changed_when: true
 
   when: check_satellite_installed.rc == 127
