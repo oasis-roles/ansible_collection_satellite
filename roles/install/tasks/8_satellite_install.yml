@@ -1,8 +1,9 @@
-- name: Install | Check whether Satellite is installed using 
+- name: Install | Check whether Satellite is installed using
         foreman-maintain service status
   shell: foreman-maintain service status > /dev/null
   register: check_satellite_installed
   failed_when: check_satellite_installed.rc not in [127,1,0]
+  changed_when: false
 
 
 - name:

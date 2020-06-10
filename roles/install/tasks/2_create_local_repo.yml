@@ -1,5 +1,5 @@
 - name: Create Local Repo | check if amazon-id.conf file exists
-  stat: 
+  stat:
     path: /etc/yum/pluginconf.d/amazon-id.conf
   register: amazon_id_file
 
@@ -9,7 +9,7 @@
     regexp: '^enabled=1'
     line: enabled=0
     backrefs: true
-  when: amazon_id_file.stat.exists == true
+  when: amazon_id_file.stat.exists
 
 - name: Create Local Repo | Get a list of all the files in /etc/yum.repos.d
   find:
