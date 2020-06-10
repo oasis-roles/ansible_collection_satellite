@@ -27,23 +27,23 @@ satellite_rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
 satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 
 satellite_installer: >-
-  --foreman-initial-admin-username "{{ satellite_admin_username }}" \
-  --foreman-initial-admin-password "{{ satellite_admin_password }}" \
-  --foreman-proxy-dns-managed true \
-  --foreman-proxy-dns true \
-  --foreman-proxy-dns-interface eth0 \
-  --foreman-proxy-dns-zone rlslab.com \
-  --foreman-proxy-dns-forwarders 192.168.122.10 \
-  --foreman-proxy-dns-reverse 122.168.192.in-addr.arpa \
-  --foreman-proxy-dhcp true \
-  --foreman-proxy-dhcp-managed true \
-  --foreman-proxy-dhcp-interface eth0 \
-  --foreman-proxy-dhcp-range "192.168.122.100 192.168.122.150" \
-  --foreman-proxy-dhcp-gateway 192.168.122.1 \
-  --foreman-proxy-dhcp-nameservers 192.168.122.10 \
-  --foreman-proxy-tftp true \
-  --foreman-proxy-tftp-managed true \
-  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
+  --foreman-initial-admin-username {{ satellite_admin_username }} 
+  --foreman-initial-admin-password {{ satellite_admin_password }} 
+  --foreman-proxy-dns-managed true 
+  --foreman-proxy-dns true 
+  --foreman-proxy-dns-interface eth0 
+  --foreman-proxy-dns-zone rlslab.com 
+  --foreman-proxy-dns-forwarders 192.168.122.10 
+  --foreman-proxy-dns-reverse 122.168.192.in-addr.arpa 
+  --foreman-proxy-dhcp true 
+  --foreman-proxy-dhcp-managed true 
+  --foreman-proxy-dhcp-interface eth0 
+  --foreman-proxy-dhcp-range 192.168.122.100 192.168.122.150 
+  --foreman-proxy-dhcp-gateway 192.168.122.1 
+  --foreman-proxy-dhcp-nameservers 192.168.122.10 
+  --foreman-proxy-tftp true 
+  --foreman-proxy-tftp-managed true 
+  --foreman-proxy-tftp-servername {{ satellite_hostname }}
 
 satellite_req_dirs:
   - mount_point: /var/lib/pulp
