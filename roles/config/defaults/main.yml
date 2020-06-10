@@ -55,3 +55,69 @@ activation_keys:
     release_version: 7Server
     service_level: Standard
 
+satellite_content_views:
+  - name: CV_RHEL7Ansible
+    repositories:
+      - name: "Red Hat Ansible Engine 2.8 RPMs for Red Hat Enterprise Linux 7 Server x86_64"
+        product: "Red Hat Ansible Engine"
+
+  - name: CV_RHEL7SatTools
+    repositories:
+      - name: "Red Hat Satellite Tools {{ satellite_version }} for RHEL 7 Server RPMs x86_64"
+        product: "Red Hat Enterprise Linux Server"
+
+  - name: CV_RHEL7Server
+    repositories:
+      - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
+        product: "Red Hat Enterprise Linux Server"
+
+  - name: CV_RHEL7Extras
+    repositories:
+      - name: "Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64"
+        product: "Red Hat Enterprise Linux Server"
+
+  - name: CV_RHEL7Optional
+    repositories:
+      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server" 
+        product: "Red Hat Enterprise Linux Server"
+
+  - name: CV_RHEL7SC
+    repositories:
+      - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server"
+        product: "Red Hat Software Collections (for RHEL Server)"
+
+
+satellite_composite_content_views:
+  - name: CCV_RHEL7_KVM
+    components:
+      - content_view: CV_RHEL7Server
+        latest: true
+      - content_view: CV_RHEL7Ansible
+        latest: true
+      - content_view: CV_RHEL7Extras
+        latest: true
+      - content_view: CV_RHEL7Optional
+        latest: true
+      - content_view: CV_RHEL7SatTools
+        latest: true
+
+  - name: CCV_RHEL7_VM
+    components:
+      - content_view: CV_RHEL7Server
+        latest: true
+      - content_view: CV_RHEL7Optional
+        latest: true
+      - content_view: CV_RHEL7SatTools
+        latest: true
+
+  - name: CCV_RHEL7_APPS
+    components:
+      - content_view: CV_RHEL7Server
+        latest: true
+      - content_view: CV_RHEL7Optional
+        latest: true
+      - content_view: CV_RHEL7SC
+        latest: true
+      - content_view: CV_RHEL7SatTools
+        latest: true
+
