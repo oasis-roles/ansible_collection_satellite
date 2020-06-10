@@ -1,0 +1,8 @@
+# defaults file for prefab-role
+satellite_account_id: "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
+satellite_rhn_user: "{{ lookup('env', 'RHN_USER') }}"
+satellite_rhn_password: "{{ lookup('env', 'RHN_PASSWORD') }}"
+satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
+satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
+satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
+satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
