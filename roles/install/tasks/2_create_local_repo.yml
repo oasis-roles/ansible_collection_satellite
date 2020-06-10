@@ -9,7 +9,7 @@
     regexp: '^enabled=1'
     line: enabled=0
     backrefs: true
-  when: amazon_id_file.stat.exists
+  when: amazon_id_file.stat.exists | bool
 
 - name: Create Local Repo | Get a list of all the files in /etc/yum.repos.d
   find:
