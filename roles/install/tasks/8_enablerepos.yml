@@ -12,8 +12,8 @@
 
 - name: Enable repos | RHEL repositories with label that need releasever
   oasis_roles.satellite.katello_repository_set:
-    username: "{{ satellite_rhn_user }}"
-    password: "{{ satellite_rhn_password }}"
+    username: "{{ satellite_admin_user }}"
+    password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
     organization: "{{ satellite_initial_organization }}"
     label: "{{ item.label }}"
@@ -26,8 +26,8 @@
 
 - name: Enable repos | RHEL repositories with label
   oasis_roles.satellite.katello_repository_set:
-    username: "{{ satellite_rhn_user }}"
-    password: "{{ satellite_rhn_password }}"
+    username: "{{ satellite_admin_user }}"
+    password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
     organization: "{{ satellite_initial_organization }}"
     label: "{{ item.label }}"
