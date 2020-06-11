@@ -1,4 +1,4 @@
-- name: update_satellite_with_custom_certs | Validate custom certificate bundle
+- name: satellite_custom_certs | Validate custom certificate bundle
   shell: >-
     katello-certs-check -c {{ satellite_certs_server_cert }}
     -p {{ satellite_certs_server_key }}
@@ -6,13 +6,11 @@
   register: check_certs
   failed_when: ("[FAIL]" in check_certs.stdout)
 
-- name: >-
-    update_satellite_with_custom_certs |
-    Update Satellite to use custom certificates
+- name: satellite_custom_certs | Install custom Satellite certificates
   shell: >-
     satellite-installer
     --certs-server-cert {{ satellite_certs_server_cert }}
-    --certs-server-key {{ satelite_certs_server_key }}
+    --certs-server-key {{ satellite_certs_server_key }}
     --certs-server-ca-key {{ satellite_certs_server_ca_cert }}
   register: update_satellite_with_custom_certs
   when: ("Validation succeeded" in check_certs.stdout)

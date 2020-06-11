@@ -12,7 +12,7 @@
   shell: >-
     satellite-installer
     --certs-server-cert {{ satellite_certs_server_cert }}
-    --certs-server-key {{ satelite_certs_server_key }}
+    --certs-server-key {{ satellite_certs_server_key }}
     --certs-server-ca-key {{ satellite_certs_server_ca_cert }}
     --certs-update-server
     --certs-update-server-ca
