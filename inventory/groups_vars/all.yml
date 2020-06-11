@@ -14,3 +14,6 @@ satellite_initial_organization: >-
 satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
 satellite_manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
 satellite_server_url: "{{ https://{{ ansible_fqdn }}"
+satellite_certs_server_cert: "{{ lookup('env', 'SAT_CERTS_SERVER_CERT')} }"
+satellite_certs_server_key: "{{ lookup('env', 'SAT_CERTS_SERVER_KEY') }}"
+satellite_certs_server_ca_cert: "{{ lookup('env', 'SAT_CERTS_SERVER_CA_CERT')}}"
