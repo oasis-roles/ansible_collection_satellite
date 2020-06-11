@@ -4,24 +4,25 @@
     url: https://subscription.rhsm.redhat.com/subscription/consumers/{{ manifest_uuid }}/export
     username: "{{ satellite_rhn_user }}"
     password: "{{ satellite_rhn_password }}"
-    dest: /opt/satellite_manifest.zip
+    dest: "{{ satellite_manifest_dest }}"
     validate_certs: false
   when: satellite_rhn_connect != 'disconnect'
 
 - name: Manifest | Copy manifest from local system to remote target
   copy:
-    src: "{{ satellite_manifest }}"
-    dest: /opt/satellite_manifest.zip
+    src: "{{ satellite_manifest_src }}"
+    dest: "{{ satellite_manifest_dest }}"
     owner: root
     group: root
     mode: 0640
   when: satellite_rhn_connect == 'disconnect'
 
 - name: Manifest | Upload the manifest
-  oasis_roles.satellite.katello_manifest:
-    username: "{{ satellite_rhn_user }}"
-    password: "{{ satellite_rhn_password }}"
+  katello_manifest:
+    username: "{{ satellite_admin_username }}"
+    password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
     organization: "{{ satellite_initial_organization }}"
     state: present
-    manifest_path: "/opt/satellite_manifest.zip"
+    manifest_path: "{{ satellite_manifest_dest }}"
+
