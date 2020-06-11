@@ -1,15 +1,15 @@
 - name: Repo Sync | Get all repositories
   oasis_roles.satellite.foreman_search_facts:
-    username: "{{ satellite_rhn_user }}"
-    password: "{{ satellite_rhn_password }}"
+    username: "{{ satellite_admin_username }}"
+    password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
     resource: repositories
   register: repositories
 
 - name: Repo Sync | Kick off repository Sync tasks
   oasis_roles.satellite.katello_sync:
-    username: "{{ satellite_rhn_user }}"
-    password: "{{ satellite_rhn_password }}"
+    username: "{{ satellite_admin_username }}"
+    password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
     product: "{{ item.product.name }}"
     repository: "{{ item.name }}"

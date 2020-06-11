@@ -10,12 +10,12 @@ satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
 satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
 satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
 satellite_initial_organization: >-
-  "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
-satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
+  {{ lookup('env', 'INITIAL_ORGANIZATION') }}
+satellite_initial_location: "{{ lookup('env', 'INITIAL_LOCATION') }}"
 satellite_manifest: "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
 #satellite_manifest:             /opt/satellite_manifest.zip
 satellite_manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
-satellite_server_url: "{{ https://{{ ansible_fqdn }}"
+satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_fw_service_name: RH-Satellite-6
 satellite_data_disk: /dev/nvme1n1
 satellite_vg_name: sat_vg01
