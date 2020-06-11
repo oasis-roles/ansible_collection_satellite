@@ -5,7 +5,6 @@
   failed_when: check_satellite_installed.rc not in [127,1,0]
   changed_when: false
 
-
 - name:
   block:
   - name: Install | Yum install the packages required for satellite
@@ -15,7 +14,7 @@
 
   - name: Install | Satellite if it is not installed
     command: >-
-       satellite-installer --scenario satellite {{ satellite_installer }}
+       satellite-installer --scenario satellite {{ satellite_options }}
 
   - name: Move performance tuning yaml to
       /etc/foreman-installer/custom-hiera.yaml

@@ -1,0 +1,63 @@
+- name: "Create generic_view content view"
+  oasis_roles.satellite.katello_content_view:
+    username: "{{ lookup('env','FOREMAN_USER') }}"
+    password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    state: present
+    name: "generic_view"
+    organization: "{{ satellite_initial_organization }}"
+    repositories:
+      - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
+        product: "Red Hat Enterprise Linux Server"
+        #yamllint disable-line rule:line-length
+      - name: >-
+          Red Hat Software Collections RPMs for Red
+          Hat Enterprise Linux 7 Server x86_64 7Server
+        product: "Red Hat Software Collections for RHEL Server"
+      - name: "Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64"
+        product: "Red Hat Enterprise Linux Server"
+      - name: >-
+          Red Hat Enterprise Linux 7 Server -
+          Optional RPMs x86_64 7Server"
+        product: "Red Hat Enterprise Linux Server"
+      - name: >-
+          Red Hat Ansible Engine 2.8 RPMs for
+          Red Hat Enterprise Linux 7 Server x86_64
+        product: "Red Hat Ansible Engine"
+      - name: "Red Hat Satellite Tools 6.6 for RHEL 7 Server RPMs x86_64"
+        product: "Red Hat Enterprise Linux Server"
+
+- name: "Create ocp_content_view content view"
+  oasis_roles.satellite.katello_content_view:
+    username: "{{ lookup('env','FOREMAN_USER') }}"
+    password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    state: present
+    name: "ocp_content_view"
+    organization: "{{ satellite_initial_organization }}"
+    repositories:
+      - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
+        product: "Red Hat Enterprise Linux Server"
+      - name: "Red Hat Satellite Tools 6.6 for RHEL 7 Server RPMs x86_64"
+        product: "Red Hat Enterprise Linux Server"
+      - name: "Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64"
+        product: "Red Hat Enterprise Linux Server"
+      - name: >-
+          Red Hat Ansible Engine 2.8 RPMs for
+          Red Hat Enterprise Linux 7 Server x86_64
+        product: "Red Hat Ansible Engine"
+      - name: "Red Hat OpenShift Container Platform 3.11 RPMs x86_64"
+        product: "Red Hat OpenShift Container Platform"
+
+- name: "Ensure content views are published"
+  oasis_roles.satellite.katello_content_view_version:
+    username: "{{ lookup('env','FOREMAN_USER') }}"
+    password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+    server_url: "https://{{ ansible_fqdn }}"
+    content_view: "{{ item.name }}"
+    organization: "{{ satellite_initial_organization }}"
+    version: "1.0"
+    lifecycle_environments:
+      - Library
+  with_items:
+    - "{{ content_view }}"

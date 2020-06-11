@@ -57,3 +57,11 @@
         group: root
         state: link
   when: "ebs_checked.rc != 0"
+
+- name: Storage Config | Create a symbolic link
+  file:
+    src: /var/lib/pulp
+    dest: /var/cache/pulp
+    owner: root
+    group: root
+    state: link
