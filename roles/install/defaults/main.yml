@@ -1,4 +1,9 @@
 # defaults file for prefab-role
+satelite_enable_storage: true
+satellite_enable_fips: true
+satellite_enable_custom_certs: true
+satellite_enable_oscap: true
+
 satellite_hostname: "{{ ansible_hostname }}"
 satellite_account_id: "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
 satellite_rhn_user: "{{ lookup('env', 'RHN_USER') }}"
@@ -29,21 +34,21 @@ satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 satellite_options: >-
   --foreman-initial-admin-username "{{ satellite_admin_username }}"
   --foreman-initial-admin-password "{{ satellite_admin_password }}"
-  --foreman-proxy-dns-managed true
-  --foreman-proxy-dns true
-  --foreman-proxy-dns-interface "eth0"
-  --foreman-proxy-dns-zone "example.com"
-  --foreman-proxy-dns-forwarders "192.168.122.10"
-  --foreman-proxy-dns-reverse "122.168.192.in-addr.arpa"
-  --foreman-proxy-dhcp true
-  --foreman-proxy-dhcp-managed true
-  --foreman-proxy-dhcp-interface "eth0"
-  --foreman-proxy-dhcp-range "192.168.122.100 192.168.122.150"
-  --foreman-proxy-dhcp-gateway "192.168.122.1"
-  --foreman-proxy-dhcp-nameservers "192.168.122.10"
-  --foreman-proxy-tftp true
-  --foreman-proxy-tftp-managed true
-  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
+  --foreman-proxy-dns-managed "{{ foreman-proxy-dns-managed }}"
+  --foreman-proxy-dns "{{ foreman-proxy-dns }}"
+  --foreman-proxy-dns-interface "{{ foreman-proxy-dns-interface }}"
+  --foreman-proxy-dns-zone "{{ foreman-proxy-dns-zone }}"
+  --foreman-proxy-dns-forwarders "{{ foreman-proxy-dns-forwarders }}"
+  --foreman-proxy-dns-reverse "{{ foreman-proxy-dns-reverse }}"
+  --foreman-proxy-dhcp "{{ foreman-proxy-dhcp }}"
+  --foreman-proxy-dhcp-managed "{{ foreman-proxy-dhcp-managed }}"
+  --foreman-proxy-dhcp-interface "{{ foreman-proxy-dhcp-interface }}"
+  --foreman-proxy-dhcp-range "{{ foreman-proxy-dhcp-range }}"
+  --foreman-proxy-dhcp-gateway "{{ foreman-proxy-dhcp-gateway }}"
+  --foreman-proxy-dhcp-nameservers "{{ foreman-proxy-dhcp-nameservers }}"
+  --foreman-proxy-tftp "{{ foreman-proxy-tftp }}"
+  --foreman-proxy-tftp-managed "{{ foreman-proxy-tftp-managed }}"
+  --foreman-proxy-tftp-servername "{{ foreman-proxy-tftp-servername }}"
 
 satellite_req_dirs:
   - mount_point: /var/lib/pulp
