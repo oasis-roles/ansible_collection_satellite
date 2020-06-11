@@ -15,7 +15,7 @@
 - name: Main | Satellite Install
   import_tasks: 5_satellite_install.yml
 
-- name: Main | Satellite Settings 
+- name: Main | Satellite Settings
   import_tasks: 6_satellite_settings.yml
 
 - name: Main | Upload Manifest
@@ -28,7 +28,7 @@
   import_tasks: 9_repo_sync.yml
 
 - name: Main | Install Customer Certs
-  import_tasks: 10_satellite_custom_certs
+  import_tasks: 10_satellite_custom_certs.yml
   when: satellite_enable_custom_certs
 
 - name: Main | Install Openscap

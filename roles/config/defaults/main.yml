@@ -21,7 +21,7 @@ activation_keys:
     host_collections:
       - KVMHOSTS_HC
     subscriptions:
-      - name: Red Hat Enterprise Linux Server with Smart Management, 
+      - name: Red Hat Enterprise Linux Server with Smart Management,
               Standard (Physical or Virtual Nodes)
     content_overrides:
       - label: rhel-7-server-ansible-2.8-rpms
@@ -42,7 +42,7 @@ activation_keys:
     host_collections:
       - VMHOSTS_HC
     subscriptions:
-      - name: Red Hat Enterprise Linux Server with Smart Management, 
+      - name: Red Hat Enterprise Linux Server with Smart Management,
               Standard (Physical or Virtual Nodes)
     content_overrides:
       - label: rhel-server-rhscl-7-rpms
@@ -58,11 +58,13 @@ activation_keys:
 satellite_content_views:
   - name: CV_RHEL7Ansible
     repositories:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Ansible Engine 2.8 RPMs for Red Hat Enterprise Linux 7 Server x86_64"
         product: "Red Hat Ansible Engine"
 
   - name: CV_RHEL7SatTools
     repositories:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Satellite Tools {{ satellite_version }} for RHEL 7 Server RPMs x86_64"
         product: "Red Hat Enterprise Linux Server"
 
@@ -78,14 +80,15 @@ satellite_content_views:
 
   - name: CV_RHEL7Optional
     repositories:
-      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server" 
+      # yamllint disable-line rule:line-length
+      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
 
   - name: CV_RHEL7SC
     repositories:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server"
         product: "Red Hat Software Collections (for RHEL Server)"
-
 
 satellite_composite_content_views:
   - name: CCV_RHEL7_KVM
@@ -120,4 +123,3 @@ satellite_composite_content_views:
         latest: true
       - content_view: CV_RHEL7SatTools
         latest: true
-

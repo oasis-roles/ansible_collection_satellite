@@ -1,6 +1,6 @@
 # Handlers for satellite_config
 - name: handler - publish content views
-  katello_content_view_version:
+  oasis_roles.satellite.katello_content_view_version:
     username: "{{ satellite_initial_admin_username }}"
     password: "{{ satellite_initial_admin_password }}"
     server_url: "{{ satellite_url }}"
@@ -12,7 +12,7 @@
   with_items: "{{ satellite_content_views }}"
 
 - name: handler - publish composite content views
-  katello_content_view_version:
+  oasis_roles.satellite.katello_content_view_version:
     username: "{{ satellite_initial_admin_username }}"
     password: "{{ satellite_initial_admin_password }}"
     server_url: "{{ satellite_url }}"
@@ -22,4 +22,3 @@
       - Library
       - "{{ satellite_prod_lifecycle_env }}"
   with_items: "{{ satellite_composite_content_views }}"
-

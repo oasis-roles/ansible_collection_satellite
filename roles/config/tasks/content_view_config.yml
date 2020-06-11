@@ -1,5 +1,5 @@
 - name: "content views config | Create or update content views"
-  katello_content_view:
+  oasis_roles.satellite.katello_content_view:
     username: "{{ satellite_initial_admin_username }}"
     password: "{{ satellite_initial_admin_password }}"
     server_url: "{{ satellite_url }}"
@@ -12,7 +12,7 @@
 - meta: flush_handlers
 
 - name: "config_content_views | Create a composite content view"
-  katello_content_view:
+  oasis_roles.satellite.katello_content_view:
     username: "{{ satellite_initial_admin_username }}"
     password: "{{ satellite_initial_admin_password }}"
     server_url: "{{ satellite_url }}"
