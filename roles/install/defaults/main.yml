@@ -1,10 +1,16 @@
-# defaults file for prefab-role
+# defaults file
 satelite_enable_storage: true
 satellite_enable_fips: true
 satellite_enable_custom_certs: true
 satellite_enable_oscap: true
 
 satellite_hostname: "{{ ansible_hostname }}"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') | mandatory }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') | mandatory }}"
+satellite_initial_organization: >-
+  {{ lookup('env', 'INITIAL_ORGANIZATION') }}
+
+satellite_version: "6.7"
 satellite_account_id: "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
 satellite_rhn_user: "{{ lookup('env', 'RHN_USER') }}"
 satellite_rhn_password: "{{ lookup('env', 'RHN_PASSWORD') }}"
@@ -12,21 +18,17 @@ satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
 satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
 satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
 satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
-satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') | mandatory }}"
-satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') | mandatory }}"
-satellite_initial_organization: >-
-  {{ lookup('env', 'INITIAL_ORGANIZATION') }}
 satellite_initial_location: "{{ lookup('env', 'INITIAL_LOCATION') }}"
 satellite_manifest: "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
-#satellite_manifest:             /opt/satellite_manifest.zip
 satellite_manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_fw_service_name: RH-Satellite-6
+# storage
 satellite_data_disk: /dev/nvme1n1
 satellite_vg_name: sat_vg01
+# rhel info
 satellite_server_basearch: "x86_64"
 satellite_server_releasever: "7Server"
-satellite_version: "6.7"
 satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
 satellite_rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
 satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"

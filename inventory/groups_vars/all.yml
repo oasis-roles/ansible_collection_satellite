@@ -28,6 +28,8 @@ satellite_enable_oscap: true
 satellite_options: >-
   --foreman-initial-admin-username "{{ satellite_admin_username }}"
   --foreman-initial-admin-password "{{ satellite_admin_password }}"
+  --foreman-initial-organization  "{{ satellite_organization }}"
+  --foreman-initial-location  "{{ satellite_location }}"
   --foreman-proxy-dns-managed true
   --foreman-proxy-dns true
   --foreman-proxy-dns-interface "eth0"
