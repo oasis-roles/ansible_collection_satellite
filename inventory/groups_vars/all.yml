@@ -7,8 +7,8 @@ satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
 satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
 satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
 satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
-satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
-satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') | mandatory }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') | mandatory }}"
 satellite_initial_organization: >-
   "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
 satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
@@ -25,19 +25,21 @@ satellite_enable_custom_certs: true
 satellite_enable_oscap: true
 
 # satellite install role options:
-satellite-proxy-dns-managed: true
-satellite-proxy-dns: true
-satellite-proxy-dns-interface: "eth0"
-satellite-proxy-dns-zone: "example.com"
-satellite-proxy-dns-forwarders: "192.168.122.10"
-satellite-proxy-dns-reverse: "122.168.192.in-addr.arpa"
-satellite-proxy-dhcp: true
-satellite-proxy-dhcp-managed: true
-satellite-proxy-dhcp-interface: "eth0"
-satellite-proxy-dhcp-range: "192.168.122.100 192.168.122.150"
-satellite-proxy-dhcp-gateway: "192.168.122.1"
-satellite-proxy-dhcp-nameservers: "192.168.122.10"
-satellite-proxy-tftp: true
-satellite-proxy-tftp-managed: true
-satellite-proxy-tftp-servername: "{{ satellite_hostname }}"
-
+satellite_options: >-
+  --foreman-initial-admin-username "{{ satellite_admin_username }}"
+  --foreman-initial-admin-password "{{ satellite_admin_password }}"
+  --foreman-proxy-dns-managed true
+  --foreman-proxy-dns true
+  --foreman-proxy-dns-interface "eth0"
+  --foreman-proxy-dns-zone "example.com"
+  --foreman-proxy-dns-forwarders "192.168.122.10"
+  --foreman-proxy-dns-reverse "122.168.192.in-addr.arpa"
+  --foreman-proxy-dhcp true
+  --foreman-proxy-dhcp-managed true
+  --foreman-proxy-dhcp-interface "eth0"
+  --foreman-proxy-dhcp-range "192.168.122.100 192.168.122.150" 
+  --foreman-proxy-dhcp-gateway "192.168.122.1"
+  --foreman-proxy-dhcp-nameservers "192.168.122.10"
+  --foreman-proxy-tftp true
+  --foreman-proxy-tftp-managed true
+  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"

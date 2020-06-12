@@ -12,8 +12,8 @@ satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
 satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
 satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
 satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
-satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
-satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') | mandatory }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') | mandatory }}"
 satellite_initial_organization: >-
   {{ lookup('env', 'INITIAL_ORGANIZATION') }}
 satellite_initial_location: "{{ lookup('env', 'INITIAL_LOCATION') }}"
@@ -34,21 +34,21 @@ satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 satellite_options: >-
   --foreman-initial-admin-username "{{ satellite_admin_username }}"
   --foreman-initial-admin-password "{{ satellite_admin_password }}"
-  --foreman-proxy-dns-managed "{{ satellite-proxy-dns-managed }}"
-  --foreman-proxy-dns "{{ satellite-proxy-dns }}"
-  --foreman-proxy-dns-interface "{{ satellite-proxy-dns-interface }}"
-  --foreman-proxy-dns-zone "{{ satellite-proxy-dns-zone }}"
-  --foreman-proxy-dns-forwarders "{{ satellite-proxy-dns-forwarders }}"
-  --foreman-proxy-dns-reverse "{{ satellite-proxy-dns-reverse }}"
-  --foreman-proxy-dhcp "{{ satellite-proxy-dhcp }}"
-  --foreman-proxy-dhcp-managed "{{ satellite-proxy-dhcp-managed }}"
-  --foreman-proxy-dhcp-interface "{{ satellite-proxy-dhcp-interface }}"
-  --foreman-proxy-dhcp-range "{{ satellite-proxy-dhcp-range }}"
-  --foreman-proxy-dhcp-gateway "{{ satellite-proxy-dhcp-gateway }}"
-  --foreman-proxy-dhcp-nameservers "{{ satellite-proxy-dhcp-nameservers }}"
-  --foreman-proxy-tftp "{{ satellite-proxy-tftp }}"
-  --foreman-proxy-tftp-managed "{{ satellite-proxy-tftp-managed }}"
-  --foreman-proxy-tftp-servername "{{ satellite-proxy-tftp-servername }}"
+  --foreman-proxy-dns-managed true
+  --foreman-proxy-dns true
+  --foreman-proxy-dns-interface "eth0"
+  --foreman-proxy-dns-zone "example.com"
+  --foreman-proxy-dns-forwarders "192.168.122.10"
+  --foreman-proxy-dns-reverse "122.168.192.in-addr.arpa"
+  --foreman-proxy-dhcp true
+  --foreman-proxy-dhcp-managed true
+  --foreman-proxy-dhcp-interface "eth0"
+  --foreman-proxy-dhcp-range "192.168.122.100 192.168.122.150"
+  --foreman-proxy-dhcp-gateway "192.168.122.1"
+  --foreman-proxy-dhcp-nameservers "192.168.122.10"
+  --foreman-proxy-tftp true
+  --foreman-proxy-tftp-managed true
+  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
 
 satellite_req_dirs:
   - mount_point: /var/lib/pulp
