@@ -1,8 +1,8 @@
-- name: Enabling repos | Check to see if localhost is running Satellite
-  shell: command -v hammer >/dev/null 2>&1
-  register: is_hammer_exist
-  changed_when: true
-
+#  - name: Enabling repos | Check to see if localhost is running Satellite
+#    shell: command -v hammer >/dev/null 2>&1
+#    register: is_hammer_exist
+#    changed_when: true
+#
 - name: Enabling repos | Checking pulp directory is owned by apache
   file:
     path: /var/lib/pulp
