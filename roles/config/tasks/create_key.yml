@@ -1,4 +1,4 @@
-- name: Move epel key
+- name: Move gitlab key
   copy:
     src: files/rpm_gpg_key_gitlab
     dest: /opt/rpm_gpg_key_gitlab

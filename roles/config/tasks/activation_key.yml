@@ -1,5 +1,6 @@
-- name: "activation keys | Create an Activation key with the created content view"
-  katello_activation_key:
+- name: "activation keys | Create an Activation key with the
+         created content view"
+  oasis_roles.satellite.katello_activation_key:
     username: "{{ foreman_initial_admin_username }}"
     password: "{{ foreman_initial_admin_password }}"
     server_url: "{{ satellite_url }}"
@@ -14,4 +15,3 @@
     #release_version: "{{ item.release_version }}"
     #service_level: "{{ item.service_level }}"
   with_items: "{{ activation_keys }}"
-
