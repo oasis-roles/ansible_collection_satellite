@@ -17,9 +17,10 @@ readme: README.md
 # A list of the collection's content authors. Can be just the name or in the format 'Full Name <email> (url)
 # @nicks:irc/im.site#channel'
 authors:
-  - David Roble <droble@redhat.com>
+  - Cory McKee <cmckee@redhat.com>
   - Greg Hellings <greg.hellings@gmail.com>
-  - Sean Myers <semyers@redhat.com>
+  - Mike Holmes <mholmes@redhat.com>
+  - Ron Sawyer <rsawyer@redhat.com>
 
 ### OPTIONAL but strongly recommended
 
