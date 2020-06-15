@@ -19,3 +19,13 @@ included which are of general interest in setting up a system. There is no
 prejudice against adding compatibility with other distributions, and any such
 improvements and additions are welcome. Lack of support for a system is due only
 to the singular focus of the original contributors.
+
+Requirements
+------------
+
+Ansible 2.4 or higher
+
+Red Hat Enterprise Linux 7 or equivalent
+
+Valid Red Hat Subscriptions
+
