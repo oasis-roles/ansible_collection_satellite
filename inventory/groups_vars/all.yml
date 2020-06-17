@@ -35,7 +35,6 @@ satellite_vg_name: sat_vg01
 satellite_server_basearch: "x86_64"
 satellite_server_releasever: "7Server"
 satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
-satellite_rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
 satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 satellite_prod_lifecycle_env: "Production"
 satellite_domain: "{{ ansible_domain }}"
@@ -167,11 +166,6 @@ satellite_thirdparty:
     url: "{{ content_source }}/epel/"
     des: "Extra Packages for Enterprise Linux"
     repo: epel-7-x86_64
-# - name: Gitlab
-#   gpg: rpm_gpg_key_gitlab
-#   url: "https://packages.gitlab.com/runner/gitlab-runner/el/7/x86_64"
-#   des: Gitlab
-#   repo: gitlab-7-x86_64
 
 satellite_host_collections:
   - name: KVMHOSTS_HC
