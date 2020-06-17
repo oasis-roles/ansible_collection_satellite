@@ -1,7 +1,7 @@
-satellite_install
+install
 ===========
 
-Basic description for satellite_install
+This role will install satellite
 
 Requirements
 ------------
@@ -15,36 +15,17 @@ Valid Red Hat Subscriptions
 Role Variables
 --------------
 
-Currently the following variables are supported:
-
-### General
-
-* `satellite_install_become` - Default: true. If this role needs administrator
-  privileges, then use the Ansible become functionality (based off sudo).
-* `satellite_install_become_user` - Default: root. If the role uses the become
-  functionality for privilege escalation, then this is the name of the target
-  user to change to.
 
 Dependencies
 ------------
 
-None
-
-Example Playbook
-----------------
-
-```yaml
-- hosts: satellite_install-servers
-  roles:
-    - role: oasis_roles.system.satellite_install
-```
+Example Playbooks
+-----------------
 
 License
 -------
 
-GPLv3
+[GPLv3](LICENSE)
 
 Author Information
 ------------------
-
-Author Name <authoremail@domain.net>

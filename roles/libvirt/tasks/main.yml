@@ -1,0 +1,34 @@
+#  tasks file for libvirt
+- name: make sure idm is running
+  virt:
+    name: idm
+    state: running
+
+- name: get list of VMs
+  virt:
+    command: "list_vms"
+  register: vms
+
+- name: create vm
+  command: >
+            virt-install --name {{ item.name }}
+            --memory {{ item.mem }}
+            --vcpus {{ item.cpus }}
+            --network network={{ item.network }}
+            --disk {{ item.disk }}
+            --location {{ item.boot_url }}
+            --extra-args "{{ item.extra_args }}"
+            --os-variant {{ item.os_type }}
+            --boot hd
+            --graphics none
+            --wait=-1
+  when: item.name not in vms.list_vms
+  with_items: "{{ guests }}"
+  notify: wait for boot
+
+- name: start vm
+  virt:
+    name: "{{ item.name }}"
+    state: running
+  with_items: "{{ guests }}"
+  notify: wait for boot

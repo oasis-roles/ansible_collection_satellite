@@ -1,0 +1,39 @@
+# tasks file for snapshot
+- name: get list of VMs
+  virt:
+    command: "list_vms"
+  register: vms
+
+- name: shutdown vm {{ vm }}
+  virt:
+    name: "{{ vm }}"
+    state: shutdown
+  when: vm in vms.list_vms
+
+- name:  Wait for shutdown
+  virt: 
+    name: "{{ vm }}"
+    command: status
+  register: result
+  until: result.status.find("shutdown") != -1
+  retries: 30
+  delay: 5
+
+- name: snapshot vm {{ vm }}
+  vars:
+    date: "{{ '%Y-%m-%d-%H-%M-%S' | strftime }}"
+  shell: "virsh snapshot-create-as --domain {{ vm }} --name {{ snap_name }}-{{ date }}"
+  when: vm in vms.list_vms
+
+- name: start vm
+  virt:
+    name: "{{ vm }}"
+    state: running
+  when: vm in vms.list_vms
+
+- name: main | wait for connection
+  wait_for_connection:
+    delay: 30
+    timeout: 900
+  delegate_to: "{{ vm }}"
+

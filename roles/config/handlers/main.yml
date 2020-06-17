@@ -1,24 +1,25 @@
-# Handlers for satellite_config
+---
+# handlers file for sat_config
 - name: handler - publish content views
-  oasis_roles.satellite.katello_content_view_version:
-    username: "{{ satellite_initial_admin_username }}"
-    password: "{{ satellite_initial_admin_password }}"
-    server_url: "{{ satellite_url }}"
+  katello_content_view_version:
+    username: "{{ satellite_admin_username }}"
+    password: "{{ satellite_admin_password }}"
+    server_url: "{{ satellite_server_url }}"
     content_view: "{{ item.name }}"
-    organization: "{{ satellite_initial_organization }}"
+    organization: "{{ satellite_organization }}"
     lifecycle_environments:
       - Library
       - "{{ satellite_prod_lifecycle_env }}"
-  with_items: "{{ satellite_content_views }}"
+  with_items: "{{ satellite_content_views }}" 
 
 - name: handler - publish composite content views
-  oasis_roles.satellite.katello_content_view_version:
-    username: "{{ satellite_initial_admin_username }}"
-    password: "{{ satellite_initial_admin_password }}"
-    server_url: "{{ satellite_url }}"
+  katello_content_view_version:
+    username: "{{ satellite_admin_username }}"
+    password: "{{ satellite_admin_password }}"
+    server_url: "{{ satellite_server_url }}"
     content_view: "{{ item.name }}"
-    organization: "{{ satellite_initial_organization }}"
+    organization: "{{ satellite_organization }}"
     lifecycle_environments:
       - Library
       - "{{ satellite_prod_lifecycle_env }}"
-  with_items: "{{ satellite_composite_content_views }}"
+  with_items: "{{ satellite_composite_content_views }}" 

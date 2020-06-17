@@ -1,0 +1,47 @@
+# put all common and customer requirements vars that multiple roles need
+satellite_hostname: "{{ ansible_hostname }}"
+satellite_account_id: "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
+satellite_rhn_user: "{{ lookup('env', 'RHN_USER') }}"
+satellite_rhn_password: "{{ lookup('env', 'RHN_PASSWORD') }}"
+satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
+satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
+satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
+satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') | mandatory }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') | mandatory }}"
+satellite_initial_organization: >-
+  "{{ lookup('env', 'FOREMAN_INITIAL_ORGANIZATION') }}"
+satellite_initial_location: "{{ lookup('env', 'FOREMAN_INITIAL_LOCATION') }}"
+satellite_manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
+satellite_server_url: "{{ https://{{ ansible_fqdn }}"
+satellite_certs_server_cert: "{{ lookup('env', 'SAT_CERTS_SERVER_CERT')} }"
+satellite_certs_server_key: "{{ lookup('env', 'SAT_CERTS_SERVER_KEY') }}"
+satellite_certs_server_ca_cert: "{{ lookup('env', 'SAT_CERTS_SERVER_CA_CERT')}}"
+
+# install role flags:
+satelite_enable_storage: true
+satellite_enable_fips: true
+satellite_enable_custom_certs: true
+satellite_enable_oscap: true
+
+# satellite install role options:
+satellite_options: >-
+  --foreman-initial-admin-username "{{ satellite_admin_username }}"
+  --foreman-initial-admin-password "{{ satellite_admin_password }}"
+  --foreman-initial-organization  "{{ satellite_organization }}"
+  --foreman-initial-location  "{{ satellite_location }}"
+  --foreman-proxy-dns-managed true
+  --foreman-proxy-dns true
+  --foreman-proxy-dns-interface "eth0"
+  --foreman-proxy-dns-zone "example.com"
+  --foreman-proxy-dns-forwarders "192.168.122.10"
+  --foreman-proxy-dns-reverse "122.168.192.in-addr.arpa"
+  --foreman-proxy-dhcp true
+  --foreman-proxy-dhcp-managed true
+  --foreman-proxy-dhcp-interface "eth0"
+  --foreman-proxy-dhcp-range "192.168.122.100 192.168.122.150" 
+  --foreman-proxy-dhcp-gateway "192.168.122.1"
+  --foreman-proxy-dhcp-nameservers "192.168.122.10"
+  --foreman-proxy-tftp true
+  --foreman-proxy-tftp-managed true
+  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
