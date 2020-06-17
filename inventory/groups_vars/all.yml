@@ -176,18 +176,6 @@ satellite_thirdparty:
 satellite_host_collections:
   - name: KVMHOSTS_HC
     description: "physical KVM servers"
-  - name: DSHOSTS_HC
-    description: "DS 398 servers"
-  - name: CAHOSTS_HC
-    description: "CS servers"
-  - name: RFSHOSTS_HC
-    description: "RFS servers"
-  - name: DBHOSTS_HC
-    description: "DB servers"
-  - name: WAFHOSTS_HC
-    description: "WAF servers"
-  - name: CSPHOSTS_HC
-    description: "CSP servers"
   - name: VMHOSTS_HC
     description: "VM servers"
   - name: SCAPHOSTS_HC
@@ -299,29 +287,6 @@ satellite_activation_keys:
     release_version: 7Server
     service_level: Standard
 
-  - name: APPS_AK
-    lifecycle_environment: "{{ satellite_prod_lifecycle_env }}"
-    content_view: RHEL7Server_CV
-    host_collections:
-      - DSHOSTS_HC
-      - CAHOSTS_HC
-      - RFSHOSTS_HC
-      - DBHOSTS_HC
-      - WAFHOSTS_HC
-      - CSPHOSTS_HC
-    subscriptions:
-      - name: "Red Hat Enterprise Linux Server with Smart Management, Standard (Physical or Virtual Nodes)"
-    content_overrides:
-      - label: rhel-server-rhscl-7-rpms
-        override: enabled
-      - label: rhel-7-server-optional-rpms
-        override: enabled
-      - label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
-        override: enabled
-    auto_attach: "false"
-    release_version: "7Server"
-    service_level: "Standard"
-
 satellite_subnets:
   - name: "{{ satellite_mgmtsubnet }}"
     description: "{{ satellite_mgmtsubnet }}"
@@ -404,77 +369,12 @@ satellite_hostgroups:
     organization: "{{ satellite_organization }}"
     state: present
 
-  - name: "CS9"
-    parent: "BASELINE/VM"
+  - name: "KVM"
+    parent: "BASELINE"
     organization: "{{ satellite_organization }}"
     state: present
 
-  - name: "CS9CA"
-    parent: "BASELINE/VM/CS9"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "CS9DRM"
-    parent: "BASELINE/VM/CS9"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "GOTS"
-    parent: "BASELINE/VM"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "ARA"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "GDS-VM"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "PORTAL"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "PUREBRED"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "RFS-GOTS"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "WAF-PORTAL"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "WBBR"
-    parent: "BASELINE/VM/GOTS"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "RFS"
-    parent: "BASELINE/VM"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "WAF"
-    parent: "BASELINE/VM"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "WAF-CA"
-    parent: "BASELINE/VM/WAF"
-    organization: "{{ satellite_organization }}"
-    state: present
-
-  - name: "WAF-DRM"
-    parent: "BASELINE/VM/WAF"
+  - name: "SOMEAPP"
+    parent: "BASELINE/VM/SOMEAPP"
     organization: "{{ satellite_organization }}"
     state: present
