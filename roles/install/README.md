@@ -1,4 +1,4 @@
-install
+Install
 ===========
 
 This role will install satellite
