@@ -6,7 +6,7 @@
     mode: '0755'
 
 - name: enable repos | RHEL repositories with label that need releasever
-  katello_repository_set:
+  oasis.satellite.katello_repository_set:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"

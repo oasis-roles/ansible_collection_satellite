@@ -1,5 +1,5 @@
 - name: repo sync | get all repositories
-  foreman_search_facts:
+  oasis.satellite.foreman_search_facts:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
@@ -7,7 +7,7 @@
   register: repositories
 
 - name: repo sync | Kick off repository sync tasks
-  katello_sync:
+  oasis.satellite.katello_sync:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"

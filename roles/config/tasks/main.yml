@@ -1,31 +1,31 @@
 # tasks file for config
 # create/update host collections
 - name: main | config host collections
-  import_tasks: config_host_collections.yml
+  import_tasks: host_collections.yml
 
 # create/update lifecycle environment
 - name: main | config Lifecycle environment
-  import_tasks: config_lifecycle_env.yml
+  import_tasks: lifecycle_env.yml
 
 # create/update content views
 - name: main | config content views
-  import_tasks: config_content_views.yml
+  import_tasks: content_views.yml
 
 # create/update activation keys
 - name: main | config activation keys
-  import_tasks: config_activation_keys.yml
+  import_tasks: activation_keys.yml
 
 # create/update subnets
 - name: main | config subnets
-  import_tasks: config_subnets.yml
+  import_tasks: subnets.yml
 
 # create/update domains
 - name: main | config domains
-  import_tasks: config_domains.yml
+  import_tasks: domains.yml
 
 # create hostgroups
 - name: main | config hostgroups 
-  import_tasks: config_hostgroups.yml
+  import_tasks: hostgroups.yml
 
 # create compute nodes
 # create compute resources

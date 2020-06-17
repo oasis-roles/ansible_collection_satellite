@@ -13,7 +13,7 @@
 #  with_items: "{{ satellite_content_views }}"
 
 - name: "config content views | Create or update content views"
-  katello_content_view:
+  oasis.satellite.katello_content_view:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
@@ -26,7 +26,7 @@
 - meta: flush_handlers
 
 - name: "config content views | Create a composite content view"
-  katello_content_view:
+  oasis.satellite.katello_content_view:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
