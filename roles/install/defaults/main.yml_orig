@@ -1,0 +1,53 @@
+# Since this is a password, for security reasons we demand that the
+# user provide this as input
+#satellite_admin_username: admin
+#satellite_admin_password: CHANGEME
+#satellite_organization: Default Organization
+#satellite_location: Default Location
+satellite_enable_ssl: true
+satellite_ssl_port: 443
+satellite_http_port: 80
+satellite_proxy_http_port: 8000
+satellite_proxy_http: true
+satellite_proxy_ssl_port: 9090
+satellite_proxy_ssl: true
+satellite_puppet_port: 8140
+satellite_answers_file_destination: >-
+  /etc/foreman-installer/scenarios.d/satellite-answers.yaml
+satellite_compute_ec2: false
+satellite_compute_gce: false
+satellite_compute_libvirt: true
+satellite_compute_openstack: false
+satellite_compute_ovirt: false
+satellite_compute_rackspace: false
+satellite_compute_vmware: false
+satellite_fqdn: "{{ ansible_fqdn }}"
+satellite_ip: "{{ ansible_default_ipv4.address }}"
+settings_content_disconnected: true
+settings_entries_per_page: 100
+settings_unregister_delete_host: true
+settings_errata_status_installable: true
+settings_login_text:  "I've read & consent to terms in DISA user agreement."
+settings_name_generator_type: Off
+
+foreman_initial_admin_username: "{{ lookup('env','FOREMAN_USER') }}"
+foreman_initial_admin_password: "{{ lookup('env','FOREMAN_PASSWORD') }}"
+foreman_initial_organization: "{{ lookup('env','FOREMAN_INITIAL_ORGANIZATION') }}"
+foreman_initial_location: "{{ lookup('env','FOREMAN_INITIAL_LOCATION') }}"
+foreman_proxy_dns_managed: true 
+foreman_proxy_dns: true 
+foreman_proxy_dns_interface: "{{ ansible_default_ipv4.interface }}" #eth0 
+foreman_proxy_dns_zone: "{{ ansible_domain }}" #rlslab.com 
+foreman_proxy_dns_principle: "{{ ansible_domain | upper }}" #RLSLAB
+foreman_proxy_dns_forwarders: "{{ ansible_dns.nameservers[0] }}" #192.168.122.10 
+foreman_proxy_dns_reverse: "{{ ansible_default_ipv4.address | ipaddr('revdns') | regex_replace('^[0-9]+\\.', '') | regex_replace('\\.$') }}" #122.168.192.in_addr.arpa 
+foreman_proxy_dhcp: true 
+foreman_proxy_dhcp_managed: true 
+foreman_proxy_dhcp_interface: "{{ ansible_default_ipv4.interface }}" #eth0 
+foreman_proxy_dhcp_range: "{{ lookup('env','FOREMAN_DHCP_RANGE') }}" #"192.168.122.100 192.168.122.150" 
+foreman_proxy_dhcp_gateway: "{{ ansible_default_ipv4.gateway }}" #192.168.122.1 
+foreman_proxy_dhcp_nameservers: "{{ ansible_dns.nameservers[0] }}" #192.168.122.10 
+foreman_proxy_dhcp_domain: "{{ ansible_domain }}" #rlslab.com
+foreman_proxy_tftp: true 
+foreman_proxy_tftp_managed: true 
+foreman_proxy_tftp_servername: "{{ ansible_fqdn }}"

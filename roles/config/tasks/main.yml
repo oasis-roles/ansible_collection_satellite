@@ -1,17 +1,32 @@
-- name: Host Collections
+# tasks file for config
+# create/update host collections
+- name: main | config host collections
   import_tasks: host_collections.yml
 
-- name: Content Views
-  import_tasks: content_view_config.yml
+# create/update lifecycle environment
+- name: main | config Lifecycle environment
+  import_tasks: lifecycle_env.yml
 
-- name: Activations Keys
-  import_tasks: activation_key.yml
+# create/update content views
+- name: main | config content views
+  import_tasks: content_views.yml
 
-- name: Sync Plan
-  import_tasks: sync_plan.yml
+# create/update activation keys
+- name: main | config activation keys
+  import_tasks: activation_keys.yml
 
-#- name: Create infrastructure necessary for openscap
-#  include_tasks: openscap_config.yml
-#  loop: "{{ hostgroup_config }}"
-#  loop_control:
-#     loop_var: hostgroup
+# create/update subnets
+- name: main | config subnets
+  import_tasks: subnets.yml
+
+# create/update domains
+- name: main | config domains
+  import_tasks: domains.yml
+
+# create hostgroups
+- name: main | config hostgroups 
+  import_tasks: hostgroups.yml
+
+# create compute nodes
+# create compute resources
+#

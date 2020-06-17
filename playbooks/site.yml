@@ -1,0 +1,62 @@
+- name: site | create satellite VM
+  hosts: kvm
+  become: false
+  roles:
+    - role: libvirt
+
+- name: site | snapshot satellite VM
+  hosts: kvm
+  become: false
+  roles:
+    - role: snapshot
+      vars:
+        vm: "{{ satellite_hostname }}"
+        snap_name: "a-post-kickstart"
+      when: satellite_enable_snap
+
+- name: site |  rhsm & yum update
+  hosts: mgmt
+  roles:
+    - role: rhsm
+    - role: yumupdate
+
+- name: site | snapshot satellite VM
+  hosts: kvm
+  become: false
+  roles:
+    - role: snapshot
+      vars:
+        vm: "{{ satellite_hostname }}"
+        snap_name: "b-post-rhsm-and-yum-update"
+      when: satellite_enable_snap
+
+- name: site | upload manifest, enable and sync content repos
+  hosts: mgmt
+  roles:
+    - role: install
+    - role: content
+
+- name: site | snapshot satellite VM
+  hosts: kvm
+  become: false
+  roles:
+    - role: snapshot
+      vars:
+        vm: "{{ satellite_hostname }}"
+        snap_name: "c-post-install-and-content"
+      when: satellite_enable_snap
+
+- name: site | configure satellite
+  hosts: mgmt
+  roles:
+    - role: config
+
+- name: site | snapshot satellite VM
+  hosts: kvm
+  become: false
+  roles:
+    - role: snapshot
+      vars:
+        vm: "{{ satellite_hostname }}"
+        snap_name: "d-post-satellite-config"
+      when: satellite_enable_snap

@@ -1,0 +1,43 @@
+# tasks file for yumupdate
+# TASKS
+- name: yum update | yum-clean-metadata
+  command: yum clean all
+  args:
+    warn: no
+
+- name: yum update | Remove unneeded packages
+  package:
+    name: iwl7265-firmware
+    state: absent
+
+- name: yum update | installing secuity Packages
+  package:
+    name:
+      - screen
+      - unzip
+      - ipa-client
+      - tmux
+    state: present
+
+- name: yum update | Check if update is required
+  shell: yum -q check-update > /dev/null
+  register: patch_lvl
+  failed_when: patch_lvl.rc not in [100,0]
+
+- name:
+  block:
+  - name: yum update | Yum update the system
+    package:
+      name: "*"
+      state: latest
+
+  - name: yum update | Reboot on new kernel
+    reboot:
+
+  - name: yum update | Wait 600 seconds for connection to become reachable
+    wait_for_connection:
+
+  when: patch_lvl.rc == 100
+
+- name: yum update | Refreshing Ansible facts
+  setup:

@@ -1,0 +1,101 @@
+# defaults file
+satelite_enable_storage: true
+satellite_enable_fips: true
+satellite_enable_custom_certs: true
+satellite_enable_oscap: true
+
+satellite_hostname: "{{ ansible_hostname }}"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') | mandatory }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') | mandatory }}"
+satellite_initial_organization: >-
+  {{ lookup('env', 'INITIAL_ORGANIZATION') }}
+
+satellite_version: "6.7"
+satellite_account_id: "{{ lookup('env', 'SAT_ACCOUNT_ID') }}"
+satellite_rhn_user: "{{ lookup('env', 'RHN_USER') }}"
+satellite_rhn_password: "{{ lookup('env', 'RHN_PASSWORD') }}"
+satellite_rhn_activation_key: "{{ lookup('env', 'RHN_AK') }}"
+satellite_rhn_org: "{{ lookup('env', 'RHN_ORG')}}"
+satellite_rhn_connect: "{{ lookup('env', 'RHN_CONNECT') }}"
+satellite_content_source: "{{ lookup('env', 'CONTENT_SOURCE') }}"
+satellite_initial_location: "{{ lookup('env', 'INITIAL_LOCATION') }}"
+satellite_manifest: "{{ lookup('env', 'SATELLITE_MANIFEST') }}"
+satellite_manifest_uuid: "{{ lookup('env', 'MANIFEST_UUID') }}"
+satellite_server_url: "https://{{ ansible_fqdn }}"
+satellite_fw_service_name: RH-Satellite-6
+# storage
+satellite_data_disk: /dev/nvme1n1
+satellite_vg_name: sat_vg01
+# rhel info
+satellite_server_basearch: "x86_64"
+satellite_server_releasever: "7Server"
+satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
+satellite_rpm_gpg_key_gitlab: /opt/rpm_gpg_key_gitlab
+satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
+
+satellite_options: >-
+  --foreman-initial-admin-username "{{ satellite_admin_username }}"
+  --foreman-initial-admin-password "{{ satellite_admin_password }}"
+  --foreman-proxy-dns-managed true
+  --foreman-proxy-dns true
+  --foreman-proxy-dns-interface "eth0"
+  --foreman-proxy-dns-zone "example.com"
+  --foreman-proxy-dns-forwarders "192.168.122.10"
+  --foreman-proxy-dns-reverse "122.168.192.in-addr.arpa"
+  --foreman-proxy-dhcp true
+  --foreman-proxy-dhcp-managed true
+  --foreman-proxy-dhcp-interface "eth0"
+  --foreman-proxy-dhcp-range "192.168.122.100 192.168.122.150"
+  --foreman-proxy-dhcp-gateway "192.168.122.1"
+  --foreman-proxy-dhcp-nameservers "192.168.122.10"
+  --foreman-proxy-tftp true
+  --foreman-proxy-tftp-managed true
+  --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
+
+satellite_req_dirs:
+  - mount_point: /var/lib/pulp
+    lv_name: var_lib_pulp
+    lv_size: 520g
+  - mount_point: /var/lib/mongodb
+    lv_name: var_lib_mongodb
+    lv_size: 50g
+  - mount_point: /var/lib/pgsql
+    lv_name: var_lib_pgsql
+    lv_size: 10g
+  - mount_point: /var/spool/squid
+    lv_name: var_spool_squid
+    lv_size: 10g
+
+###### Foreman Ansible Modules ###########
+satellite_settings:
+  - name: "default_download_policy"
+    value: "immediate"
+  - name: "unregister_delete_host"
+    value: "true"
+  - name: "errata_status_installable"
+    value: "true"
+  - name: "name_generator_type"
+    value: "false"
+  - name: "entries_per_page"
+    value: "100"
+  - name: "login_text"
+    value: "I've read & consent to terms in IS user agreement."
+
+satellite_red_hat_repositories_releasever:
+  - label: rhel-7-server-rpms
+  - label: rhel-server-rhscl-7-rpms
+  - label: rhel-7-server-optional-rpms
+
+satellite_red_hat_repositories:
+  - label: rhel-7-server-extras-rpms
+  - label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
+  - label: rhel-7-server-satellite-maintenance-6-rpms
+  - label: rhel-7-server-ansible-2.8-rpms
+  - label: rhel-7-server-satellite-{{ satellite_version }}-rpms
+
+satellite_redhat_products:
+  - product: "Red Hat Enterprise Linux Server"
+  - product: "Red Hat Ansible Engine"
+  - product: "Red Hat OpenShift Container Platform"
+  - product: "Red Hat Software Collections for RHEL Server"
+  - product: "Red Hat OpenShift Container Platform"

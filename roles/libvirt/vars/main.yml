@@ -1,0 +1,15 @@
+#  vars file for libvirt
+satellite_vm_loc: "/var/lib/libvirt/images"
+
+guests:
+  - name: "{{ satellite_hostname }}"
+    mem: 20480
+    cpus: 4
+    os_type: rhel7.7
+    file_type: qcow2
+    disk: "path={{ satellite_vm_loc }}/{{ satellite_hostname }}.qcow2,size=300"
+    network: "default"
+    boot_url: "{{ satellite_content_source }}/rhel77"
+    extra_args: >-
+      ks={{ satellite_content_source }}/kick/{{ satellite_hostname }}.cfg 
+      ip=dhcp console=tty0 console=ttyS0,115200n8
