@@ -1,3 +1,11 @@
+satellite_rhn_activation_key: "{{ lookup('env', 'SATELLITE_RHN_AK') }}"
+satellite_rhn_org: "{{ lookup('env', 'SATELLITE_RHN_ORG')}}"
+satellite_rhn_pool_id: "{{ lookup('env', 'SATELLITE_RHN_POOL_ID')}}"
+
+
+
+
+
 # default vars for rhsm role
 
 # vars used by this role closely match args that the redhat_subscription and

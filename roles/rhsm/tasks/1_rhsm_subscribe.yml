@@ -16,5 +16,5 @@
     state: present
     activationkey: "{{ satellite_rhn_activation_key }}"
     org_id: "{{ satellite_rhn_org }}"
-    pool: '^(Red Hat Satellite Infrastructure Subscription)$'
+    pool: "{{ satellite_rhn_pool_id }}"
     force_register: true
