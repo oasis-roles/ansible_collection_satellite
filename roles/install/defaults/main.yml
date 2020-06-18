@@ -1,0 +1,21 @@
+satellite_fw_service_name: RH-Satellite-6
+satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
+satellite_admin_username: "{{ lookup('env', 'FOREMAN_USER') }}"
+satellite_admin_password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
+satellite_organization:  "{{ lookup('env', 'INITIAL_ORGANIZATION') }}"
+satellite_location: "{{ lookup('env', 'INITIAL_LOCATION') }}"
+
+satellite_options: >-
+  --foreman-initial-admin-username "{{ satellite_admin_username }}"
+  --foreman-initial-admin-password "{{ satellite_admin_password }}"
+  --foreman-initial-organization  "{{ satellite_organization }}"
+  --foreman-initial-location  "{{ satellite_location }}"
+  --foreman-proxy-puppetca true
+  --foreman-proxy-tftp true
+  --enable-foreman-plugin-discovery
+
+satellite_settings:
+  - name: "default_download_policy"
+    value: "immediate"
+  - name: "errata_status_installable"
+    value: "true"
