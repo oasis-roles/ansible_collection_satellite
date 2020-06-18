@@ -1,9 +1,4 @@
 #  tasks file for libvirt
-- name: make sure idm is running
-  virt:
-    name: idm
-    state: running
-
 - name: get list of VMs
   virt:
     command: "list_vms"

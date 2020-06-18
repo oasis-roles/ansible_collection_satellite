@@ -8,8 +8,6 @@ satellite_enable_snap: true
 
 satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION | mandatory }}"
-satellite_fqdn: "{{ ansible_fqdn }}"
-satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_account_id: "{{ lookup('env', 'SATELLITE_ACCOUNT_ID') }}"
 satellite_rhn_user: "{{ lookup('env', 'SATELLITE_RHN_USER') }}"
 satellite_rhn_password: "{{ lookup('env', 'SATELLITE_RHN_PASSWORD') }}"
@@ -27,6 +25,8 @@ satellite_manifest_uuid: "{{ lookup('env', 'SATELLITE_MANIFEST_UUID') }}"
 satellite_certs_server_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CERT')} }"
 satellite_certs_server_key: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_KEY') }}"
 satellite_certs_server_ca_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CA_CERT')}}"
+satellite_fqdn: "{{ ansible_fqdn }}"
+satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_vm_location: "/var/lib/libvirt/images"
 satellite_fw_service_name: RH-Satellite-6
 satellite_data_disk: /dev/nvme1n1
@@ -50,11 +50,6 @@ satellite_dhcp_domain: "{{ ansible_domain }}"  # example.com
 satellite_partition_table_name: "Kickstart default"
 satellite_operatingsystem: "RedHat 7.7"
 satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.7"
-
-satellite_packages:
-  - satellite
-  - chrony
-  - sos
 
 # satellite install role options:
 satellite_options: >-
@@ -199,7 +194,7 @@ satellite_content_views:
 
   - name: RHEL7Optional_CV
     repositories:
-      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server" 
+      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
 
   - name: RHEL7SC_CV
@@ -340,9 +335,9 @@ satellite_hostgroups:
     ptable: "{{ satellite_partition_table_name }}"
     environment: "production"
     organization: "{{ satellite_organization }}"
-    organizations: 
+    organizations:
       - "{{ satellite_organization }}"
-    locations: 
+    locations:
       - "{{ satellite_location }}"
     domain: "{{ satellite_domain }}"
     subnet: "{{ satellite_mgmtsubnet }}"

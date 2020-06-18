@@ -1,4 +1,3 @@
----
 # tasks file for sat_config
 ### content views
 #- name: "config_content_views | remove content views"

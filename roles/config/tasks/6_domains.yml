@@ -1,5 +1,3 @@
----
-
 - name: config domains | create or update domains
   oasis.satellite.foreman_domain:
     username: "{{ satellite_admin_username }}"

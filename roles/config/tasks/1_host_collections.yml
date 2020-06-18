@@ -1,6 +1,4 @@
----
 # tasks file for sat_config
-
 ### host collections
 - name: "config host collections | create PKI host collections"
   oasis.satellite.katello_host_collection:
