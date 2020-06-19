@@ -16,6 +16,7 @@ Role Variables
 --------------
 
 
+
 Dependencies
 ------------
 
@@ -29,3 +30,6 @@ License
 
 Author Information
 ------------------
+Ron Sawyer <rsawyer@redhat.com>
+Cory McKee <cmckee@redhat.com>
+Greg Hellings <ghelling@redhat.com>

@@ -19,3 +19,11 @@ satellite_options: >-
   --foreman-proxy-dhcp-managed false
   --foreman-proxy-tftp false
   --foreman-proxy-tftp-managed false
+  --foreman-proxy-puppetca true
+  --enable-foreman-plugin-discovery
+
+satellite_settings:
+  - name: "default_download_policy"
+    value: "immediate"
+  - name: "errata_status_installable"
+    value: "true"

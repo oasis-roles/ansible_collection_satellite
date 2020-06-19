@@ -13,7 +13,6 @@ satellite_rhn_user: "{{ lookup('env', 'SATELLITE_RHN_USER') }}"
 satellite_rhn_password: "{{ lookup('env', 'SATELLITE_RHN_PASSWORD') }}"
 satellite_rhn_activation_key: "{{ lookup('env', 'SATELLITE_RHN_AK') }}"
 satellite_rhn_org: "{{ lookup('env', 'SATELLITE_RHN_ORG')}}"
-
 satellite_rhn_connect: "{{ lookup('env', 'SATELLITE_RHN_CONNECT') }}"
 satellite_content_source: "{{ lookup('env', 'SATELLITE_CONTENT_SOURCE') }}"
 satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
@@ -29,9 +28,6 @@ satellite_certs_server_ca_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CA_CER
 satellite_fqdn: "{{ ansible_fqdn }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_vm_location: "/var/lib/libvirt/images"
-satellite_fw_service_name: RH-Satellite-6
-satellite_data_disk: /dev/nvme1n1
-satellite_vg_name: sat_vg01
 satellite_server_basearch: "x86_64"
 satellite_server_releasever: "7Server"
 satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
@@ -82,6 +78,8 @@ satellite_options: >-
   --foreman-proxy-tftp true
   --foreman-proxy-tftp-managed true
   --foreman-proxy-tftp-servername "{{ satellite_hostname }}"
+  --foreman-proxy-puppetca true
+  --enable-foreman-plugin-discovery
 
 satellite_req_dirs:
   - mount_point: /var/lib/pulp
