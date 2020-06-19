@@ -1,4 +1,0 @@
-satellite_yum_packages:
-  - satellite
-  - chrony
-  - sos
