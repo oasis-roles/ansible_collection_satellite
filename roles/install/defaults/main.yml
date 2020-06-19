@@ -1,7 +1,7 @@
 satellite_rhn_connect: "{{ lookup('env', 'SATELLITE_RHN_CONNECT') }}"
 satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
 satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') }}"
-satellite_organization:  "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
+satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
 satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_fw_service_name: RH-Satellite-6
