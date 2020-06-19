@@ -26,4 +26,5 @@
     username: "{{ satellite_rhn_username }}"
     password: "{{ satellite_rhn_password }}"
     pool: "{{ satellite_rhn_pool_id }}"
+    force_register: true
   when: satellite_rhn_username != ""

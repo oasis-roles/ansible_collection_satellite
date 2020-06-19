@@ -5,6 +5,7 @@ satellite_rhn_pool_id: "{{ lookup('env', 'SATELLITE_RHN_POOL_ID')}}"
 satellite_rhn_connect: "{{ lookup('env', 'SATELLITE_RHN_CONNECT') }}"
 satellite_rhn_username: "{{ lookup('env', 'SATELLITE_RHN_USER') }}"
 satellite_rhn_password: "{{ lookup('env', 'SATELLITE_RHN_PASSWORD') }}"
+satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') }}"
 
 # vars used by this role closely match args that the redhat_subscription and
 # redhat_repository modules take, with the added "rhsm_" prefix for
