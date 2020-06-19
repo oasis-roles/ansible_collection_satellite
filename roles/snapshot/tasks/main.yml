@@ -10,8 +10,8 @@
     state: shutdown
   when: vm in vms.list_vms
 
-- name:  Wait for shutdown
-  virt: 
+- name: Wait for shutdown
+  virt:
     name: "{{ vm }}"
     command: status
   register: result
@@ -22,7 +22,9 @@
 - name: snapshot vm {{ vm }}
   vars:
     date: "{{ '%Y-%m-%d-%H-%M-%S' | strftime }}"
-  shell: "virsh snapshot-create-as --domain {{ vm }} --name {{ snap_name }}-{{ date }}"
+  command: >-
+    virsh snapshot-create-as --domain {{ vm }}
+    --name {{ snap_name }}-{{ date }}
   when: vm in vms.list_vms
 
 - name: start vm
@@ -36,4 +38,3 @@
     delay: 30
     timeout: 900
   delegate_to: "{{ vm }}"
-

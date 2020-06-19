@@ -1,4 +1,5 @@
-- name: "config activation keys | Create an Activation key with the created content view"
+- name: "config activation keys | Create an Activation key with the created
+    content view"
   oasis_roles.satellite.katello_activation_key:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"

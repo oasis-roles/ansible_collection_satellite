@@ -24,7 +24,7 @@
   import_tasks: 6_domains.yml
 
 # create hostgroups
-- name: main | config hostgroups 
+- name: main | config hostgroups
   import_tasks: 7_hostgroups.yml
 
 # create compute nodes
