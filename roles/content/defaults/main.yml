@@ -9,7 +9,6 @@ satellite_rhn_password: "{{ lookup('env', 'SATELLITE_RHN_PASSWORD') }}"
 satellite_rhn_connect: "{{ lookup('env', 'SATELLITE_RHN_CONNECT') }}"
 satellite_manifest_src: "{{ lookup('env','SATELLITE_MANIFEST_NAME') }}"
 satellite_manifest_dest: "/opt/satellite_manifest.zip"
-satellite_rhn_connect: "{{ lookup('env', 'SATELLITE_RHN_CONNECT') }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION | mandatory }}"
 satellite_server_basearch: "x86_64"
 
