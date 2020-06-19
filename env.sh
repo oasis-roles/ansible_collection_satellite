@@ -52,7 +52,7 @@ export SATELLITE_RHN_CONNECT="disconnect"
 export SATELLITE_CONTENT_SOURCE="http://192.168.122.1"
 
 # MANIFEST_NAME is the name of the manifest file to be copied/uploaded
-export SATELLITE_MANIFEST_NAME="manifest_example.zip"
+export SATELLITE_MANIFEST_NAME="/opt/manifest_example.zip"
 
 
 # --- conntected installs
