@@ -1,7 +1,7 @@
 # defaults file for sat_config
 satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
 satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') }}"
-satellite_organization:  "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
+satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
 satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') }}"
 satellite_fqdn: "{{ ansible_fqdn }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
@@ -20,6 +20,7 @@ satellite_dhcp_nameservers: "{{ ansible_dns.nameservers[0] }}"  # 192.168.122.1
 satellite_dhcp_domain: "{{ ansible_domain }}"  # example.com
 satellite_partition_table_name: "Kickstart default"
 satellite_operatingsystem: "RedHat 7.7"
+# yamllint disable-line rule:line-length
 satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.7"
 
 satellite_host_collections:
@@ -33,6 +34,7 @@ satellite_host_collections:
 satellite_content_views:
   - name: RHEL7Ansible_CV
     repositories:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Ansible Engine 2.8 RPMs for Red Hat Enterprise Linux 7 Server x86_64"
         product: "Red Hat Ansible Engine"
 
@@ -55,11 +57,13 @@ satellite_content_views:
 
   - name: RHEL7Optional_CV
     repositories:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
 
   - name: RHEL7SC_CV
     repositories:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server"
         product: "Red Hat Software Collections (for RHEL Server)"
 
@@ -104,6 +108,7 @@ satellite_activation_keys:
     host_collections:
       - KVMHOSTS_HC
     subscriptions:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Enterprise Linux Server with Smart Management, Standard (Physical or Virtual Nodes)"
     content_overrides:
       - label: rhel-7-server-ansible-2.8-rpms
@@ -124,6 +129,7 @@ satellite_activation_keys:
     host_collections:
       - VMHOSTS_HC
     subscriptions:
+      # yamllint disable-line rule:line-length
       - name: "Red Hat Enterprise Linux Server with Smart Management, Standard (Physical or Virtual Nodes)"
     content_overrides:
       - label: rhel-server-rhscl-7-rpms

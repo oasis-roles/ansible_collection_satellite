@@ -1,4 +1,4 @@
-#  vars file for libvirt
+# vars file for libvirt
 satellite_vm_loc: "/var/lib/libvirt/images"
 
 guests:
@@ -11,5 +11,5 @@ guests:
     network: "default"
     boot_url: "{{ satellite_content_source }}/rhel77"
     extra_args: >-
-      ks={{ satellite_content_source }}/kick/{{ satellite_hostname }}.cfg 
+      ks={{ satellite_content_source }}/kick/{{ satellite_hostname }}.cfg
       ip=dhcp console=tty0 console=ttyS0,115200n8

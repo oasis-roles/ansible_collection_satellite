@@ -1,5 +1,5 @@
 - name: "config subnets | create or update subnets"
-  oasis.satellite.foreman_subnet:
+  oasis_roles.satellite.foreman_subnet:
     name: "{{ item.name }}"
     description: "{{ item.description }}"
     network: "{{ item.network }}"
