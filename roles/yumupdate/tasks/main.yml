@@ -7,16 +7,12 @@
 
 - name: yum update | Remove unneeded packages
   package:
-    name: iwl7265-firmware
+    name: "{{ satellite_remove_pkgs }}"
     state: absent
 
 - name: yum update | installing secuity Packages
   package:
-    name:
-      - screen
-      - unzip
-      - ipa-client
-      - tmux
+    name: "{{ satellite_add_pkgs }}"
     state: present
 
 - name: yum update | Check if update is required

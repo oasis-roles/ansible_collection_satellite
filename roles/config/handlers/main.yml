@@ -1,4 +1,3 @@
----
 # handlers file for sat_config
 - name: handler - publish content views
   oasis.satellite.katello_content_view_version:
@@ -10,7 +9,7 @@
     lifecycle_environments:
       - Library
       - "{{ satellite_prod_lifecycle_env }}"
-  with_items: "{{ satellite_content_views }}" 
+  with_items: "{{ satellite_content_views }}"
 
 - name: handler - publish composite content views
   oasis.satellite.katello_content_view_version:
@@ -22,4 +21,4 @@
     lifecycle_environments:
       - Library
       - "{{ satellite_prod_lifecycle_env }}"
-  with_items: "{{ satellite_composite_content_views }}" 
+  with_items: "{{ satellite_composite_content_views }}"

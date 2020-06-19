@@ -1,4 +1,4 @@
 ---
 # defaults file for snapshot
 vm: "{{ satellite_hostname }}"
-snap_name: "generic_desc"
+snap_name: "generic_snap"
