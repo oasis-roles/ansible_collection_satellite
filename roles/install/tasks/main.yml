@@ -2,7 +2,7 @@
 - name: main | config firewalld
   import_tasks: 1_firewalld.yml
 
-- name: main | install theforeman prereq 
+- name: main | install theforeman prereq
   import_tasks: 2_theforeman.yml
 
 - name: main | install satellite
