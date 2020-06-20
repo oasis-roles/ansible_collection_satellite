@@ -20,7 +20,7 @@
   roles:
     - role: rhsm
     - role: yumupdate
-  when: satellite_enable_rhsmyum
+  when: satellite_enable_rhsm_yum
 
 - name: site | snapshot satellite VM
   hosts: kvm
