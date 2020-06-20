@@ -1,4 +1,5 @@
 #!/bin/bash
+# run_sat_vm.sh
 
 if [[ -f /root/.sat_env.sh ]]
 then
@@ -7,4 +8,4 @@ else
   source ./sat_env.sh
 fi
 
-ansible-playbook playbooks/sat_libsat.yml
+ansible-playbook playbooks/sat_libvirt_install.yml
