@@ -1,7 +1,7 @@
 #!/bin/bash
-# env.sh
+# sat_env.sh
 # it's recomended that you copy this file to more secure location before adding
-# production values to it such as /root/.env.sh
+# production values to it such as /root/.sat_env.sh
 
 #export ANSIBLE_DEBUG=1
 
