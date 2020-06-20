@@ -4,7 +4,15 @@ satellite_enable_storage: false
 satellite_enable_fips: false
 satellite_enable_custom_certs: false
 satellite_enable_oscap: false
-satellite_enable_snap: true
+
+satellite_enable_virt: true
+satellite_enable_snap1: true
+satellite_enable_snap2: true
+satellite_enable_snap3: true
+satellite_enable_snap4: true
+satellite_enable_rhsm_yum: true
+satellite_enable_install_content: true
+satellite_enable_config: true
 
 satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory) }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION' | mandatory) }}"
