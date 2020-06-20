@@ -60,12 +60,14 @@ export SATELLITE_MANIFEST_NAME="/opt/manifest_example.zip"
 # SATELLITE_RHN_AK Activation key is from access.redhat.com for connected
 # installs.  To Create an activation key on access.redhat.com:
 # https://access.redhat.com/articles/1378093
-# export SATELLITE_RHN_AK=(Activation key that was created on access.redhat.com)
+# export SATELLITE_RHN_AK=Activation key that was created on access.redhat.com
 
 # SATELLITE_RHN_ORG is from access.redhat.com for connected installs
 # How to look up organization id on Red Hat's Customer Portal:
 # https://access.redhat.com/articles/3047431
-# export SATELLITE_RHN_ORG=(Activation Keys for Organization ID number)
+# export SATELLITE_RHN_ORG=Activation Keys for Organization ID number
+
+# SATELLITE_POOL_ID= 
 
 # SATELLITE_MANIFEST_UUID is the manifest uuid that is created on
 # access.redhat.com
@@ -76,4 +78,4 @@ export SATELLITE_MANIFEST_NAME="/opt/manifest_example.zip"
 # export SATELLITE_RHN_USER= (access.redhat.com account)
 
 # User Password for the account
-# export SATELLITE_RHN_PASSWORD = (access.redhat.com account password)
+# export SATELLITE_RHN_PASSWORD=(access.redhat.com account password)
