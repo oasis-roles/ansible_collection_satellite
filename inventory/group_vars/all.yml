@@ -1,11 +1,21 @@
-# put all common and customer requirements vars that multiple roles need
-# role flags:
+# put all shared and customer requirements vars here
+# various roles flags in the collection:
 satellite_enable_storage: false
 satellite_enable_fips: false
 satellite_enable_custom_certs: false
 satellite_enable_oscap: false
-satellite_enable_snap: true
 
+# controls what happens in the playbooks/sat_libvirt_install.yml playbook
+satellite_enable_virt: true
+satellite_enable_snap1: true
+satellite_enable_rhsm_yum: true
+satellite_enable_snap2: true
+satellite_enable_install_content: true
+satellite_enable_snap3: true
+satellite_enable_config: true
+satellite_enable_snap4: true
+
+# modify env.sh to set these vars
 satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory) }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION' | mandatory) }}"
 satellite_account_id: "{{ lookup('env', 'SATELLITE_ACCOUNT_ID') }}"
@@ -25,13 +35,26 @@ satellite_manifest_uuid: "{{ lookup('env', 'SATELLITE_MANIFEST_UUID') }}"
 satellite_certs_server_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CERT') }}"
 satellite_certs_server_key: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_KEY') }}"
 satellite_certs_server_ca_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CA_CERT') }}"
+
+# collection vars
+satellite_vm_location: "/var/lib/libvirt/images"
+
+satellite_add_pkgs:
+  - screen
+  - unzip
+  - ipa-client
+  - tmux
+
+satellite_remove_pkgs:
+  - iwl7265-firmware
+
+satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
+
 satellite_fqdn: "{{ ansible_fqdn }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
-satellite_vm_location: "/var/lib/libvirt/images"
 satellite_server_basearch: "x86_64"
 satellite_server_releasever: "7Server"
 satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
-satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 satellite_prod_lifecycle_env: "Production"
 satellite_domain: "{{ ansible_domain }}"
 satellite_mgmtsubnet: "ManagementNetwork"
@@ -48,16 +71,7 @@ satellite_partition_table_name: "Kickstart default"
 satellite_operatingsystem: "RedHat 7.7"
 satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.7"
 
-satellite_add_pkgs:
-  - screen
-  - unzip
-  - ipa-client
-  - tmux
-
-satellite_remove_pkgs:
-  - iwl7265-firmware
-
-# satellite install role options:
+# satellite-installer command options:
 satellite_options: >-
   --foreman-initial-admin-username "{{ satellite_admin_username }}"
   --foreman-initial-admin-password "{{ satellite_admin_password }}"
@@ -95,7 +109,7 @@ satellite_req_dirs:
     lv_name: var_spool_squid
     lv_size: 10g
 
-# ##### Foreman Ansible Modules ##### ##
+# Foreman/katello Ansible Modules #
 satellite_settings:
   - name: "default_download_policy"
     value: "immediate"
@@ -245,7 +259,7 @@ satellite_composite_content_views:
         latest: true
 
 satellite_activation_keys:
-  - name: KVM_AK
+  - name: KVMHOST_AK
     lifecycle_environment: "{{ satellite_prod_lifecycle_env }}"
     content_view: RHEL7_KVM_CCV
     host_collections:
@@ -265,7 +279,7 @@ satellite_activation_keys:
     release_version: 7Server
     service_level: Standard
 
-  - name: VM_AK
+  - name: VMHOST_AK
     lifecycle_environment: "{{ satellite_prod_lifecycle_env }}"
     content_view: RHEL7Server_CV
     host_collections:
