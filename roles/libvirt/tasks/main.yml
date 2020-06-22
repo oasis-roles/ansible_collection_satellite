@@ -4,6 +4,8 @@
     command: "list_vms"
   register: vms
 
+- debug: var=vms.list_vms
+
 - name: create vm
   command: >
             virt-install --name {{ item.name }}
