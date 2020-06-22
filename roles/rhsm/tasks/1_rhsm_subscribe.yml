@@ -18,7 +18,7 @@
     org_id: "{{ satellite_rhn_org }}"
     pool: "{{ satellite_rhn_pool_id }}"
     force_register: true
-  when: satellite_rhn_activation_key
+  when: satellite_rhn_activation_key|length > 0
 
 - name: RHSM Subscribe | Using an Username for register to Red Hat CDN
   redhat_subscription:
@@ -27,4 +27,4 @@
     password: "{{ satellite_rhn_password }}"
     pool: "{{ satellite_rhn_pool_id }}"
     force_register: true
-  when: satellite_rhn_username
+  when: satellite_rhn_username|length > 0
