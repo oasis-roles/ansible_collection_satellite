@@ -4,7 +4,12 @@
     command: "list_vms"
   register: vms
 
-- debug: var=vms.list_vms
+- name: update /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*{{ satellite_hostname }}'
+    line: "{{ satellite_hostip }} {{ satellite_hostname }}"
+  when: "{{ satellite_hostip }}" and "{{ satellite_hostname }}" is defined
 
 - name: create vm
   command: >

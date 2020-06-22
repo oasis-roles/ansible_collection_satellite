@@ -5,8 +5,11 @@
 - name: main | install theforeman prereq
   import_tasks: 2_theforeman.yml
 
+- name: main | update /etc/hosts
+  import_tasks: 3_etchosts.yml
+
 - name: main | install satellite
-  import_tasks: 3_install.yml
+  import_tasks: 4_install.yml
 
 - name: main | set satellite settings
-  import_tasks: 4_settings.yml
+  import_tasks: 5_settings.yml

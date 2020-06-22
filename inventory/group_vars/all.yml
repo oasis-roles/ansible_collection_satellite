@@ -17,6 +17,7 @@ satellite_enable_snap4: true
 
 # modify env.sh to set these vars
 satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory) }}"
+satellite_hostip: "{{ lookup('env', 'SATELLITE_HOSTIP' | mandatory) }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION' | mandatory) }}"
 satellite_account_id: "{{ lookup('env', 'SATELLITE_ACCOUNT_ID') }}"
 satellite_rhn_user: "{{ lookup('env', 'SATELLITE_RHN_USER') }}"
