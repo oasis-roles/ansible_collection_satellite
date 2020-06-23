@@ -11,18 +11,13 @@ satellite_manifest_src: "{{ lookup('env','SATELLITE_MANIFEST_NAME') }}"
 satellite_manifest_dest: "/opt/satellite_manifest.zip"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION | mandatory }}"
 satellite_server_basearch: "x86_64"
+satellite_manifest_uuid: "{{ lookup('env', 'SATELLITE_MANIFEST_UUID') }}"
 
 satellite_rhel7_product:
   - name: "Red Hat Enterprise Linux 7 Server (RPMs)"
     label: rhel-7-server-rpms
     repos:
       - releasever: "7Server"
-        basearch: "{{ satellite_server_basearch }}"
-
-  - name: "Red Hat Enterprise Linux 7 Server (Kickstart)"
-    label: rhel-7-server-kickstart
-    repos:
-      - releasever: "7.7"
         basearch: "{{ satellite_server_basearch }}"
 
   - name: "Red Hat Enterprise Linux 7 Server - RH Common (RPMs)"
