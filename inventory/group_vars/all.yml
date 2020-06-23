@@ -109,7 +109,7 @@ satellite_options: >-
 
 # install role settings
 satellite_settings:
-  - name: "default_download_policy"
+  - name: "default_redhat_download_policy"
     value: "immediate"
   - name: "unregister_delete_host"
     value: "true"
