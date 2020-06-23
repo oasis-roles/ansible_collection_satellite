@@ -23,7 +23,7 @@ satellite_options: >-
   --enable-foreman-plugin-discovery
 
 satellite_settings:
-  - name: "default_download_policy"
+  - name: "default_redhat_download_policy"
     value: "immediate"
   - name: "errata_status_installable"
     value: "true"

@@ -1,5 +1,5 @@
-# put all shared and customer requirements vars here
-# various roles flags in the collection:
+# put all common and customer requirements vars here
+# role flags:
 satellite_enable_storage: false
 satellite_enable_fips: false
 satellite_enable_custom_certs: false
@@ -15,8 +15,13 @@ satellite_enable_snap3: true
 satellite_enable_config: true
 satellite_enable_snap4: true
 
-# modify env.sh to set these vars
+# shared non-env vars
+satellite_server_url: "https://{{ ansible_fqdn }}"
+
+# environment lookup vars
 satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory) }}"
+satellite_hostip: "{{ lookup('env', 'SATELLITE_HOSTIP' | mandatory) }}"
+satellite_fqdn: "{{ lookup('env', 'SATELLITE_FQDN' | mandatory) }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION' | mandatory) }}"
 satellite_account_id: "{{ lookup('env', 'SATELLITE_ACCOUNT_ID') }}"
 satellite_rhn_user: "{{ lookup('env', 'SATELLITE_RHN_USER') }}"
@@ -36,9 +41,10 @@ satellite_certs_server_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CERT') }}
 satellite_certs_server_key: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_KEY') }}"
 satellite_certs_server_ca_cert: "{{ lookup('env', 'SATELLITE_CERTS_SERVER_CA_CERT') }}"
 
-# collection vars
+# libvirt vars
 satellite_vm_location: "/var/lib/libvirt/images"
 
+# yumupdate vars
 satellite_add_pkgs:
   - screen
   - unzip
@@ -48,18 +54,27 @@ satellite_add_pkgs:
 satellite_remove_pkgs:
   - iwl7265-firmware
 
+#satellite_req_dirs:
+#  - mount_point: /var/lib/pulp
+#    lv_name: var_lib_pulp
+#    lv_size: 520g
+#  - mount_point: /var/lib/mongodb
+#    lv_name: var_lib_mongodb
+#    lv_size: 50g
+#  - mount_point: /var/lib/pgsql
+#    lv_name: var_lib_pgsql
+#    lv_size: 10g
+#  - mount_point: /var/spool/squid
+#    lv_name: var_spool_squid
+#    lv_size: 10g
+
+# install role firewall vars
+satellite_fw_service_name: RH-Satellite-6
+
+# install role theforeman vars
 satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
 
-satellite_fqdn: "{{ ansible_fqdn }}"
-satellite_server_url: "https://{{ ansible_fqdn }}"
-satellite_server_basearch: "x86_64"
-satellite_server_releasever: "7Server"
-satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
-satellite_prod_lifecycle_env: "Production"
-satellite_domain: "{{ ansible_domain }}"
-satellite_mgmtsubnet: "ManagementNetwork"
-satellite_network: "{{ ansible_default_ipv4.network }}"
-satellite_mask: "{{ ansible_default_ipv4.netmask }}"
+# install role satellite-options:
 satellite_dhcp_interface: "{{ ansible_default_ipv4.interface }}"  # eth0
 satellite_dhcp_fromip: "192.168.122.100"
 satellite_dhcp_toip: "192.168.122.150"
@@ -67,11 +82,8 @@ satellite_dhcp_range: "{{ satellite_dhcp_fromip }} {{ satellite_dhcp_toip }}"
 satellite_dhcp_gateway: "{{ ansible_default_ipv4.gateway }}"  # 192.168.122.1
 satellite_dhcp_nameservers: "{{ ansible_dns.nameservers[0] }}"  # 192.168.122.1
 satellite_dhcp_domain: "{{ ansible_domain }}"  # example.com
-satellite_partition_table_name: "Kickstart default"
-satellite_operatingsystem: "RedHat 7.7"
-satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.7"
 
-# satellite-installer command options:
+# install role satellite-install command:
 satellite_options: >-
   --foreman-initial-admin-username "{{ satellite_admin_username }}"
   --foreman-initial-admin-password "{{ satellite_admin_password }}"
@@ -95,23 +107,9 @@ satellite_options: >-
   --foreman-proxy-puppetca true
   --enable-foreman-plugin-discovery
 
-satellite_req_dirs:
-  - mount_point: /var/lib/pulp
-    lv_name: var_lib_pulp
-    lv_size: 520g
-  - mount_point: /var/lib/mongodb
-    lv_name: var_lib_mongodb
-    lv_size: 50g
-  - mount_point: /var/lib/pgsql
-    lv_name: var_lib_pgsql
-    lv_size: 10g
-  - mount_point: /var/spool/squid
-    lv_name: var_spool_squid
-    lv_size: 10g
-
-# Foreman/katello Ansible Modules #
+# install role settings
 satellite_settings:
-  - name: "default_download_policy"
+  - name: "default_redhat_download_policy"
     value: "immediate"
   - name: "unregister_delete_host"
     value: "true"
@@ -123,6 +121,19 @@ satellite_settings:
     value: "100"
   - name: "login_text"
     value: "I've read & consent to terms in IS user agreement."
+
+# content & config role vars
+satellite_rpm_gpg_key_epel_7: /opt/rpm_gpg_key_epel_7
+satellite_server_basearch: "x86_64"
+satellite_server_releasever: "7Server"
+satellite_prod_lifecycle_env: "Production"
+satellite_domain: "{{ ansible_domain }}"
+satellite_mgmtsubnet: "ManagementNetwork"
+satellite_network: "{{ ansible_default_ipv4.network }}"
+satellite_mask: "{{ ansible_default_ipv4.netmask }}"
+satellite_partition_table_name: "Kickstart default"
+satellite_operatingsystem: "RedHat 7.7"
+satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.7"
 
 satellite_rhel7_product:
   - name: "Red Hat Enterprise Linux 7 Server (RPMs)"

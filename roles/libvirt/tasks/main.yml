@@ -4,6 +4,13 @@
     command: "list_vms"
   register: vms
 
+- name: update /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*{{ satellite_hostname }}'
+    line: "{{ satellite_hostip }}   {{ satellite_fqdn }} {{ satellite_hostname }}"
+  when: satellite_hostip is defined
+
 - name: create vm
   command: >
             virt-install --name {{ item.name }}

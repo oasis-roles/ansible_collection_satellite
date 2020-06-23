@@ -10,8 +10,10 @@
 # Red Hat Satellite version that is going to be installed
 export SATELLITE_VERSION=6.7
 
-# Satellite hostname, must be resolvable
+# Satellite hostname and IP
 export SATELLITE_HOSTNAME="changme"
+export SATELLITE_FQDN="changme.example.com"
+export SATELLITE_HOSTIP="x.x.x.x"
 
 # SATELLITE_USERNAME is to set the initial admin user for the satellite
 export SATELLITE_USERNAME="myadmin"
@@ -45,7 +47,7 @@ export SATELLITE_RHN_CONNECT="disconnect"
 # export SATELLITE_CERTS_SERVER_CA_CERT=?
 
 
-# --- disconntected installs
+# --- disconnected installs
 
 # SATELLITE_CONTENT_SOURCE is the path on where the offline rpm repository is
 # stored for disconnected installs
@@ -55,7 +57,7 @@ export SATELLITE_CONTENT_SOURCE="http://192.168.122.1"
 export SATELLITE_MANIFEST_NAME="/opt/manifest_example.zip"
 
 
-# --- conntected installs
+# --- connected installs
 
 # SATELLITE_RHN_AK Activation key is from access.redhat.com for connected
 # installs.  To Create an activation key on access.redhat.com:
@@ -67,7 +69,7 @@ export SATELLITE_MANIFEST_NAME="/opt/manifest_example.zip"
 # https://access.redhat.com/articles/3047431
 # export SATELLITE_RHN_ORG=Activation Keys for Organization ID number
 
-# SATELLITE_POOL_ID= 
+# SATELLITE_POOL_ID=(CHANGE_ME)
 
 # SATELLITE_MANIFEST_UUID is the manifest uuid that is created on
 # access.redhat.com
