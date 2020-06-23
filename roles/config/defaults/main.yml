@@ -3,6 +3,7 @@ satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
 satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') }}"
 satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
 satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') }}"
+satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') }}"
 satellite_fqdn: "{{ ansible_fqdn }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_server_basearch: "x86_64"
@@ -26,10 +27,6 @@ satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86
 satellite_host_collections:
   - name: KVMHOSTS_HC
     description: "physical KVM servers"
-  - name: VMHOSTS_HC
-    description: "VM servers"
-  - name: SCAPHOSTS_HC
-    description: "SCAP servers"
 
 satellite_content_views:
   - name: RHEL7Ansible_CV
@@ -81,26 +78,6 @@ satellite_composite_content_views:
       - content_view: RHEL7SatTools_CV
         latest: true
 
-  - name: RHEL7_VM_CCV
-    components:
-      - content_view: RHEL7Server_CV
-        latest: true
-      - content_view: RHEL7Optional_CV
-        latest: true
-      - content_view: RHEL7SatTools_CV
-        latest: true
-
-  - name: RHEL7_APPS_CCV
-    components:
-      - content_view: RHEL7Server_CV
-        latest: true
-      - content_view: RHEL7Optional_CV
-        latest: true
-      - content_view: RHEL7SC_CV
-        latest: true
-      - content_view: RHEL7SatTools_CV
-        latest: true
-
 satellite_activation_keys:
   - name: KVM_AK
     lifecycle_environment: "{{ satellite_prod_lifecycle_env }}"
@@ -114,25 +91,6 @@ satellite_activation_keys:
       - label: rhel-7-server-ansible-2.8-rpms
         override: enabled
       - label: rhel-7-server-extras-rpms
-        override: enabled
-      - label: rhel-7-server-optional-rpms
-        override: enabled
-      - label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
-        override: enabled
-    auto_attach: true
-    release_version: 7Server
-    service_level: Standard
-
-  - name: VM_AK
-    lifecycle_environment: "{{ satellite_prod_lifecycle_env }}"
-    content_view: RHEL7Server_CV
-    host_collections:
-      - VMHOSTS_HC
-    subscriptions:
-      # yamllint disable-line rule:line-length
-      - name: "Red Hat Enterprise Linux Server with Smart Management, Standard (Physical or Virtual Nodes)"
-    content_overrides:
-      - label: rhel-server-rhscl-7-rpms
         override: enabled
       - label: rhel-7-server-optional-rpms
         override: enabled
