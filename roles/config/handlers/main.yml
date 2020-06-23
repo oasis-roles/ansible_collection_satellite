@@ -8,7 +8,6 @@
     organization: "{{ satellite_organization }}"
     lifecycle_environments:
       - Library
-      - "{{ satellite_prod_lifecycle_env }}"
   with_items: "{{ satellite_content_views }}"
 
 - name: handler - publish composite content views
