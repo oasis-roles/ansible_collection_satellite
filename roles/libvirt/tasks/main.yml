@@ -8,8 +8,8 @@
   lineinfile:
     dest: /etc/hosts
     regexp: '.*{{ satellite_hostname }}'
-    line: "{{ satellite_hostip }} {{ satellite_hostname }}"
-  when: "{{ satellite_hostip }}" and "{{ satellite_hostname }}" is defined
+    line: "{{ satellite_hostip }}   {{ satellite_fqdn }} {{ satellite_hostname }}"
+  when: satellite_hostip is defined
 
 - name: create vm
   command: >
