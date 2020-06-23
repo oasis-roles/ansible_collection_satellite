@@ -4,8 +4,9 @@ satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') }}"
 satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
 satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
-satellite_fw_service_name: RH-Satellite-6
-satellite_apypie_rpm: "python2-apypie-0.2.1-2.el7.noarch.rpm"
+satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory) }}"
+satellite_hostip: "{{ lookup('env', 'SATELLITE_HOSTIP' | mandatory) }}"
+satellite_domain: "{{ lookup('env', 'SATELLITE_DOMAIN' | mandatory) }}"
 
 # satellite install role options:
 satellite_options: >-

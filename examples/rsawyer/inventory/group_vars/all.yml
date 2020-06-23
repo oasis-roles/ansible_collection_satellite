@@ -17,11 +17,12 @@ satellite_enable_snap4: true
 
 # shared non-env vars
 satellite_server_url: "https://{{ ansible_fqdn }}"
+satellite_fqdn: "{{ ansible_fqdn }}"
 
 # environment lookup vars
 satellite_hostname: "{{ lookup('env', 'SATELLITE_HOSTNAME' | mandatory) }}"
 satellite_hostip: "{{ lookup('env', 'SATELLITE_HOSTIP' | mandatory) }}"
-satellite_fqdn: "{{ lookup('env', 'SATELLITE_FQDN' | mandatory) }}"
+satellite_domain: "{{ lookup('env', 'SATELLITE_DOMAIN' | mandatory) }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION' | mandatory) }}"
 satellite_account_id: "{{ lookup('env', 'SATELLITE_ACCOUNT_ID') }}"
 satellite_rhn_user: "{{ lookup('env', 'SATELLITE_RHN_USER') }}"
