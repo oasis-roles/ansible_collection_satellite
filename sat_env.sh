@@ -12,7 +12,7 @@ export SATELLITE_VERSION=6.7
 
 # Satellite hostname and IP
 export SATELLITE_HOSTNAME="changme"
-export SATELLITE_FQDN="changme.example.com"
+export SATELLITE_DOMAIN="example.com"
 export SATELLITE_HOSTIP="x.x.x.x"
 
 # SATELLITE_USERNAME is to set the initial admin user for the satellite
