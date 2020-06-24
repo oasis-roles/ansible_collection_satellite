@@ -1,6 +1,9 @@
 CONFIG
 ======
 
+Description
+-----------
+
 Config role to install Satellite configuration data:
 * Create host collections
 * Create lifecycle environments
