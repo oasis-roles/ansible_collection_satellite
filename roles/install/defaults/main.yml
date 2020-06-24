@@ -10,8 +10,6 @@ satellite_domain: "{{ lookup('env', 'SATELLITE_DOMAIN' | mandatory) }}"
 
 # satellite install role options:
 satellite_options: >-
-  --foreman-initial-admin-username "{{ satellite_admin_username }}"
-  --foreman-initial-admin-password "{{ satellite_admin_password }}"
   --foreman-initial-organization  "{{ satellite_organization }}"
   --foreman-initial-location  "{{ satellite_location }}"
   --foreman-proxy-dns-managed false
