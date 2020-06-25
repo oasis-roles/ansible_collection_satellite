@@ -44,7 +44,7 @@ tags: []
 # range specifiers can be set and are separated by ','
 dependencies:
   oasis_roles.system: '*'
-  redhat.satellite: '*'
+  theforeman.foreman: '*'
 
 # The URL of the originating SCM repository
 repository: http://github.com/oasis-roles/ansible_collection_satellite
