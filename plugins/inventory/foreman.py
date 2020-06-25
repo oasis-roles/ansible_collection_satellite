@@ -21,7 +21,7 @@ DOCUMENTATION = '''
       plugin:
         description: token that ensures this is a source file for the C(foreman) plugin.
         required: True
-        choices: ['foreman']
+        choices: ['redhat.satellite.foreman']
       url:
         description: url to foreman
         default: 'http://localhost:3000'
@@ -65,15 +65,19 @@ DOCUMENTATION = '''
             - Places hostvars in a dictionary with keys `foreman`, `foreman_facts`, and `foreman_params`
         type: boolean
         default: False
+      host_filters:
+        description: This can be used to restrict the list of returned host
+        type: string
 '''
 
 EXAMPLES = '''
 # my.foreman.yml
-plugin: foreman
+plugin: redhat.satellite.foreman
 url: http://localhost:2222
 user: ansible-tester
 password: secure
 validate_certs: False
+host_filters: 'organization="Web Engineering"'
 '''
 
 from distutils.version import LooseVersion
@@ -97,7 +101,7 @@ from requests.auth import HTTPBasicAuth
 class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
     ''' Host inventory parser for ansible using foreman as source. '''
 
-    NAME = 'foreman'
+    NAME = 'redhat.satellite.foreman'
 
     def __init__(self):
 
@@ -127,7 +131,7 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
             self.session.verify = self.get_option('validate_certs')
         return self.session
 
-    def _get_json(self, url, ignore_errors=None):
+    def _get_json(self, url, ignore_errors=None, params=None):
 
         if not self.use_cache or url not in self._cache.get(self.cache_key, {}):
 
@@ -136,7 +140,10 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
 
             results = []
             s = self._get_session()
-            params = {'page': 1, 'per_page': 250}
+            if params is None:
+                params = {}
+            params['page'] = 1
+            params['per_page'] = 250
             while True:
                 ret = s.get(url, params=params)
                 if ignore_errors and ret.status_code in ignore_errors:
@@ -174,7 +181,11 @@ class InventoryModule(BaseInventoryPlugin, Cacheable, Constructable):
         return self._cache[self.cache_key][url]
 
     def _get_hosts(self):
-        return self._get_json("%s/api/v2/hosts" % self.foreman_url)
+        url = "%s/api/v2/hosts" % self.foreman_url
+        params = {}
+        if self.get_option('host_filters'):
+            params['search'] = self.get_option('host_filters')
+        return self._get_json(url, params=params)
 
     def _get_all_params_by_id(self, hid):
         url = "%s/api/v2/hosts/%s" % (self.foreman_url, hid)
