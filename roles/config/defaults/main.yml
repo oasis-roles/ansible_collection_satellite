@@ -44,8 +44,7 @@ satellite_content_views:
     repositories:
       - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server"
         product: "Red Hat Enterprise Linux Server"
-      - name: "{{ satellite_kickstart_repository }}"
-        product: "Red Hat Enterprise Linux Server"
+
 
   - name: RHEL7Extras_CV
     repositories:
@@ -86,7 +85,7 @@ satellite_activation_keys:
       - KVMHOSTS_HC
     subscriptions:
       # yamllint disable-line rule:line-length
-      - name: "Red Hat Enterprise Linux Server with Smart Management, Standard (Physical or Virtual Nodes)"
+      - name: "Employee SKU"
     content_overrides:
       - label: rhel-7-server-ansible-2.8-rpms
         override: enabled
