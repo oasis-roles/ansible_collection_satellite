@@ -23,6 +23,7 @@
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
+    repository_url: "{{ satellite_content_source }}"
     organization: "{{ satellite_organization }}"
     state: present
     manifest_path: "{{ satellite_manifest_dest }}"

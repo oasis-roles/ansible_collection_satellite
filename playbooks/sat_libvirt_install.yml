@@ -32,12 +32,11 @@
         snap_name: "b-post-rhsm-and-yum-update"
       when: satellite_enable_snap2
 
-- name: site | upload manifest, enable and sync content repos
+- name: site | install satellite proper
   hosts: mgmt
   roles:
     - role: install
-    - role: content
-      when: satellite_enable_install_content
+      when: satellite_enable_install
 
 - name: site | snapshot satellite VM
   hosts: kvm
@@ -46,8 +45,24 @@
     - role: snapshot
       vars:
         vm: "{{ satellite_hostname }}"
-        snap_name: "c-post-install-and-content"
+        snap_name: "c-post-install"
       when: satellite_enable_snap3
+
+- name: site | upload manifest, enable and sync content repos
+  hosts: mgmt
+  roles:
+    - role: content
+      when: satellite_enable_content
+
+- name: site | snapshot satellite VM
+  hosts: kvm
+  become: false
+  roles:
+    - role: snapshot
+      vars:
+        vm: "{{ satellite_hostname }}"
+        snap_name: "d-post-content"
+      when: satellite_enable_snap4
 
 - name: site | configure satellite
   hosts: mgmt
@@ -62,5 +77,5 @@
     - role: snapshot
       vars:
         vm: "{{ satellite_hostname }}"
-        snap_name: "d-post-satellite-config"
-      when: satellite_enable_snap4
+        snap_name: "e-post-config"
+      when: satellite_enable_snap5
