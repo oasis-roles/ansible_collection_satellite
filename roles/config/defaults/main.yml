@@ -1,9 +1,10 @@
 # defaults file for sat_config
-satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
-satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') }}"
-satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') }}"
-satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') }}"
-satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') }}"
+satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') | mandatory }}"
+satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') | mandatory }}"
+satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') | mandatory }}"
+satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') | mandatory }}"
+satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') | mandatory }}"
+satellite_rhelver: "{{ lookup('env', 'SATELLITE_RHELVER') | mandatory }}"
 satellite_fqdn: "{{ ansible_fqdn }}"
 satellite_server_url: "https://{{ ansible_fqdn }}"
 satellite_server_basearch: "x86_64"
@@ -18,9 +19,9 @@ satellite_dhcp_gateway: "{{ ansible_default_ipv4.gateway }}"  # 192.168.122.1
 satellite_dhcp_nameservers: "{{ ansible_dns.nameservers[0] }}"  # 192.168.122.1
 satellite_dhcp_domain: "{{ ansible_domain }}"  # example.com
 satellite_partition_table_name: "Kickstart default"
-satellite_operatingsystem: "RedHat 7.7"
+satellite_operatingsystem: "RedHat {{ satellite_rhelver }}"
 # yamllint disable-line rule:line-length
-satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 7.7"
+satellite_kickstart_repository: "Red Hat Enterprise Linux 7 Server Kickstart x86_64 {{ satellite_rhelver }}"
 
 satellite_host_collections:
   - name: KVMHOSTS_HC
@@ -40,7 +41,8 @@ satellite_content_views:
 
   - name: RHEL7Server_CV
     repositories:
-      - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 7.7"
+      # yamllint disable-line rule:line-length
+      - name: "Red Hat Enterprise Linux 7 Server RPMs x86_64 {{ satellite_rhelver }}"
         product: "Red Hat Enterprise Linux Server"
 
   - name: RHEL7Extras_CV
@@ -51,13 +53,13 @@ satellite_content_views:
   - name: RHEL7Optional_CV
     repositories:
       # yamllint disable-line rule:line-length
-      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 7.7"
+      - name: "Red Hat Enterprise Linux 7 Server - Optional RPMs x86_64 {{ satellite_rhelver }}"
         product: "Red Hat Enterprise Linux Server"
 
   - name: RHEL7SC_CV
     repositories:
       # yamllint disable-line rule:line-length
-      - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7.7"
+      - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 {{ satellite_rhelver }}"
         product: "Red Hat Software Collections (for RHEL Server)"
 
 satellite_composite_content_views:
