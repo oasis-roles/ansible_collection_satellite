@@ -60,15 +60,11 @@ Update sat_env.sh with appropriate values
     - role: rhsm
 ```
 
-
-Changes
--------
-
-
 License
 -------
 
 [GPLv3](LICENSE)
+
 
 Author Information
 ------------------
