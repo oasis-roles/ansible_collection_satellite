@@ -85,7 +85,7 @@ satellite_activation_keys:
       - KVMHOSTS_HC
     subscriptions:
       # yamllint disable-line rule:line-length
-      - name: "Employee SKU"
+      - name: "CHANGEME"
     content_overrides:
       - label: rhel-7-server-ansible-2.8-rpms
         override: enabled
