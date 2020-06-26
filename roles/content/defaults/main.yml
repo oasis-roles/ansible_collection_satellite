@@ -13,7 +13,7 @@ satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') | mandatory }}"
 satellite_server_basearch: "x86_64"
 satellite_manifest_uuid: "{{ lookup('env', 'SATELLITE_MANIFEST_UUID') }}"
 # yamllint disable-line rule:line-length
-satellite_content_source: "{{ lookup('env', 'SATELLITE_CONTENT_SOURCE'| default('https://cdn.redhat.com') }}"
+satellite_content_source: "{{ lookup('env', 'SATELLITE_CONTENT_SOURCE'| default('https://cdn.redhat.com')) }}"
 
 satellite_rhel7_product:
   - name: "Red Hat Enterprise Linux 7 Server (RPMs)"

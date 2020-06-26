@@ -25,7 +25,7 @@
     # yamllint disable rule:line-length
     block: |
       [rhel-7-server-rpms]
-      baseurl = "{{ satellite_content_source }}/content/dist/rhel/server/7/7Server/x86_64/os/"
+      baseurl = "{{ satellite_content_source }}/content/dist/rhel/server/7/7.7/x86_64/os/"
       name = Red Hat Enterprise Linux 7 Server (RPMs)
       enabled = 1
       gpgcheck = 0
@@ -49,7 +49,7 @@
       gpgcheck = 0
 
       [rhel-server-rhscl-7-rpms]
-      baseurl = "{{ satellite_content_source }}/content/dist/rhel/server/7/7Server/x86_64/rhscl/1/os/"
+      baseurl = "{{ satellite_content_source }}/content/dist/rhel/server/7/7.7/x86_64/rhscl/1/os/"
       name = Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7Server
       enabled = 1
       gpgcheck = 0
