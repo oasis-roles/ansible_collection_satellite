@@ -7,10 +7,10 @@ Requirements
 ------------
 
 Ansible 2.8 or higher
-
+Satellite-ansible-collection
 Red Hat Enterprise Linux 7 or equivalent
+Valid Red Hat Subscription
 
-Valid Red Hat Subscriptions
 
 Role Variables
 --------------
@@ -48,12 +48,14 @@ satellite_settings:
 
 Dependencies
 ------------
+
 From Ansible Galaxy
 - oasis_roles.system
 - theforeman.foreman
 
 Example Playbooks
 -----------------
+
 ```
 ---
 - name: Satellite
@@ -70,6 +72,7 @@ License
 
 Author Information
 ------------------
-Ron Sawyer <rsawyer@redhat.com>
+
 Cory McKee <cmckee@redhat.com>
+Ron Sawyer <rsawyer@redhat.com>
 Greg Hellings <ghelling@redhat.com>

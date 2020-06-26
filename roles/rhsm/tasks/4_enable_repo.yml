@@ -1,5 +1,5 @@
 #Enabling the repos
-- name: RHSM Subscribe | Enabling the satellite repos
+- name: Enable Repos | Enabling the satellite repos
   command: >-
     /usr/sbin/subscription-manager repos --disable '*'
     --enable rhel-7-server-satellite-{{ satellite_version }}-rpms
