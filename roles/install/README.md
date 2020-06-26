@@ -48,16 +48,19 @@ satellite_settings:
 
 Dependencies
 ------------
+From Ansible Galaxy
+- oasis_roles.system
+- theforeman.foreman
 
 Example Playbooks
 -----------------
 ```
 ---
 - name: Satellite
-  hosts: mgmt
+  hosts: satellite
   become: true
   roles:
-    - role: config
+    - role: install
 ```
 
 License
