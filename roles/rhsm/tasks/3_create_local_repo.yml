@@ -1,16 +1,3 @@
-- name: Create Local Repo | Get a list of all the files in /etc/yum.repos.d
-  find:
-    paths: /etc/yum.repos.d
-    patterns: "*.repo"
-  register: repo_files
-
-- name: Create Local Repo | Remove files in /etc/yum.repos.d not redhat.repo
-  file:
-    path: "{{ item.path }}"
-    state: absent
-  when: item.path != "/etc/yum.repos.d/redhat.repo"
-  with_items: "{{ repo_files.files }}"
-
 - name: Create Local Repo | Create disconnected.repo
   file:
     path: /etc/yum.repos.d/disconnected.repo

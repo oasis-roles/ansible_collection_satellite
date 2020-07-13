@@ -1,16 +1,19 @@
 Content
 ===========
 
-This role will upload the manifest and enable and sync the Red Hat repositories
+This role will copy, upload the manifest in Satellite and then enable and sync 
+the Red Hat repositories
 
 Requirements
 ------------
 
 Ansible 2.8 or higher
-
+Satellite-ansible-collection
 Red Hat Enterprise Linux 7 or equivalent
+Valid Red Hat Subscription
+A fully installed Satellite version 6.6 or higher
+Enabled and sync'd repos
 
-Valid Red Hat Subscriptions
 
 Role Variables
 --------------
@@ -66,6 +69,6 @@ License
 
 Author Information
 ------------------
-Ron Sawyer <rsawyer@redhat.com>
 Cory McKee <cmckee@redhat.com>
+Ron Sawyer <rsawyer@redhat.com>
 Greg Hellings <ghelling@redhat.com>

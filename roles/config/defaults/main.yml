@@ -1,6 +1,9 @@
 # defaults file for sat_config
+# yamllint disable-line rule:line-length
 satellite_admin_username: "{{ lookup('env', 'SATELLITE_USERNAME') | mandatory }}"
+# yamllint disable-line rule:line-length
 satellite_admin_password: "{{ lookup('env', 'SATELLITE_PASSWORD') | mandatory }}"
+# yamllint disable-line rule:line-length
 satellite_organization: "{{ lookup('env', 'SATELLITE_ORGANIZATION') | mandatory }}"
 satellite_location: "{{ lookup('env', 'SATELLITE_LOCATION') | mandatory }}"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') | mandatory }}"
@@ -85,6 +88,7 @@ satellite_activation_keys:
     subscriptions:
       # yamllint disable-line rule:line-length
       - name: "CHANGEME"
+      # yamllint disable-line rule:line-length
       #- name: "Red Hat Enterprise Linux Server with Smart Management, Standard (Physical or Virtual Nodes)"
     content_overrides:
       - label: rhel-7-server-ansible-2.8-rpms
@@ -120,7 +124,7 @@ satellite_activation_keys:
 #    discovery_proxy: "{{ satellite_fqdn }}"
 #    httpboot_proxy: "{{ satellite_fqdn }}"
 #    tftp_proxy: "{{ satellite_fqdn }}"
-#    remote_execution_proxies: 
+#    remote_execution_proxies:
 #      - "{{ satellite_fqdn }}"
 #    server_url: "{{ satellite_server_url }}"
 
