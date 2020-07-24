@@ -1,0 +1,91 @@
+  hosts: sat01
+  remote_user: root
+  become: true
+  gather_facts: true
+  vars:
+    satellite_admin_user: admin
+    satellite_user_pass: password
+    satellite_url: https://sat01.example.com
+    satellite_verify_ssl: no
+    rhsm_password: username
+    rhsm_user: password
+    manifest_download_path: /root
+    local_manifest_path: ""
+    default_subscription:
+      - name: "Red Hat Cloud Suite (2-sockets), Premium"
+    satellite_orgs:
+      - name: CloudTeam
+        state: present
+        manifest: ""
+        manifest_state: present
+        manifest_force_upload: False
+        sync_right_away: True
+        use_local_manifest: False
+        cdn_url: https://cdn.redhat.com
+        wait_for_respo_sync: false
+        pool:
+          - id: 8a85f99b6977b7c0016979464ee772cb
+            pool_state: present
+            quantity: 7
+        location:
+          - name: Clearwater
+            state: present
+        products:
+          - rhel7
+          - rhel8
+          - ansible
+        lifecycle_environments:
+          - name: Dev
+            prior: Library
+            state: present
+            description: Dev environment
+          - name: QA
+            prior: Dev
+            state: present
+            description: QA environment
+          - name: Production
+            prior: QA
+            state: present
+            description: Production environment
+        sync_plans:
+          - name: "Red Hat Sync Plan"
+            date: "2019/10/09 00:00:00 +0000"
+            interval: daily
+            enabled: true
+            description: "Sync Plan for Red Hat products"
+        domains:
+          - name: example.com
+            locations:
+              - Clearwater
+            organizations:
+              - ACME
+              - CloudTeam
+            state: present
+            description: example.com
+        subnets:
+          - name: lunchnet
+            locations:
+              - Clearwater
+            organizations:
+              - CloudTeam
+            network: 192.24.24.0
+            mask: 255.255.255.0
+            gateway: 192.24.24.1
+            from_ip: 192.24.24.200
+            to_ip: 192.24.24.205
+            domains:
+              - example.com
+            state: present
+            description: 192.24.24.0
+        compute_resource:
+          - name: lunchnet
+            locations:
+              - Clearwater
+            organizations:
+              - CloudTeam
+            state: present
+            provider: libvirt
+            provider_params:
+              url: qemu+ssh://root@kvmhost/system
+              display_type: vnc
+            description: KVM Compute Host
