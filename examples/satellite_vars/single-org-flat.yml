@@ -1,0 +1,86 @@
+---
+# RHSM vars
+rhsm_password: username
+rhsm_user: password
+manifest_download_path: /root
+
+# Disconnected manifest upload
+local_manifest_path: ""
+
+# Satellite vars
+satellite:
+  admin_user: admin
+  admin_pass: password
+  url: https://sat01.example.com
+  verify_ssl: no
+  organizations:
+    - name: org_1
+      state: present
+      manifest:
+        manifest_state: present
+        manifest_force_upload: False
+        sync_right_away: True
+        use_local_manifest: False
+      cdn_url: https://cdn.redhat.com
+      wait_for_respo_sync: false
+      location:
+        - name: loc_1
+          state: present
+      products:
+        - rhel7
+        - rhel8
+        - ansible
+      lifecycle_environments:
+        - name: Dev
+          prior: Library
+          state: present
+          description: Dev environment
+        - name: QA
+          prior: Dev
+          state: present
+          description: QA environment
+        - name: Production
+          prior: QA
+          state: present
+          description: Production environment
+      sync_plans:
+        - name: "Red Hat Sync Plan"
+          date: "2019/10/09 00:00:00 +0000"
+          interval: daily
+          enabled: true
+          description: "Sync Plan for Red Hat products"
+      domains:
+        - name: example.com
+          locations:
+            - loc_1
+          organizations:
+            - org_1
+          state: present
+          description: example.com
+      subnets:
+        - name: lunchnet
+          locations:
+            - Clearwater
+          organizations:
+            - CloudTeam
+          network: 192.24.24.0
+          mask: 255.255.255.0
+          gateway: 192.24.24.1
+          from_ip: 192.24.24.200
+          to_ip: 192.24.24.205
+          domains:
+            - example.com
+          state: present
+          description: 192.24.24.0
+      compute_resource:
+        - name: kvm_1
+          locations:
+            - loc_1
+          organizations:
+            - org_1
+          state: present
+          provider: libvirt
+          provider_params:
+          url: qemu+ssh://root@kvmhost/system
+          display_type: vnc
+          description: KVM Compute Host
