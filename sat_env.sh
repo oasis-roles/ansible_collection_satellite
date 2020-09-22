@@ -10,6 +10,9 @@
 # Red Hat Satellite version that is going to be installed
 export SATELLITE_VERSION=6.7
 
+# Red Hat Enterprise version that is going to be supported
+export SATELLITE_RHELVER=7.7
+
 # Satellite hostname and IP
 export SATELLITE_HOSTNAME="changme"
 export SATELLITE_DOMAIN="example.com"

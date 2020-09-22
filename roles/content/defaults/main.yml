@@ -10,16 +10,17 @@ satellite_rhn_connect: "{{ lookup('env', 'SATELLITE_RHN_CONNECT') }}"
 satellite_manifest_src: "{{ lookup('env','SATELLITE_MANIFEST_NAME') }}"
 satellite_manifest_dest: "/opt/satellite_manifest.zip"
 satellite_version: "{{ lookup('env', 'SATELLITE_VERSION') | mandatory }}"
+satellite_rhelver: "{{ lookup('env', 'SATELLITE_RHELVER') | mandatory }}"
 satellite_server_basearch: "x86_64"
 satellite_manifest_uuid: "{{ lookup('env', 'SATELLITE_MANIFEST_UUID') }}"
 # yamllint disable-line rule:line-length
-satellite_content_source: "{{ lookup('env', 'SATELLITE_CONTENT_SOURCE'| default('https://cdn.redhat.com') }}"
+satellite_content_source: "{{ lookup('env', 'SATELLITE_CONTENT_SOURCE'| default('https://cdn.redhat.com')) }}"
 
 satellite_rhel7_product:
   - name: "Red Hat Enterprise Linux 7 Server (RPMs)"
     label: rhel-7-server-rpms
     repos:
-      - releasever: "7.7"
+      - releasever: "{{ satellite_rhelver }}"
         basearch: "{{ satellite_server_basearch }}"
 
 # - name: "Red Hat Enterprise Linux 7 Server - RH Common (RPMs)"
@@ -37,14 +38,14 @@ satellite_rhel7_product:
   - name: "Red Hat Enterprise Linux 7 Server - Optional (RPMs)"
     label: rhel-7-server-optional-rpms
     repos:
-      - releasever: "7.7"
+      - releasever: "{{ satellite_rhelver }}"
         basearch: "{{ satellite_server_basearch }}"
 
   # yamllint disable-line rule:line-length
-  - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 7.7"
+  - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 {{ satellite_rhelver }}"
     label: rhel-server-rhscl-7-rpms
     repos:
-      - releasever: "7.7"
+      - releasever: "{{ satellite_rhelver }}"
         basearch: "{{ satellite_server_basearch }}"
 
   - name: "Red Hat Enterprise Linux 7 Server - Extras (RPMs)"

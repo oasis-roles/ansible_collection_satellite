@@ -36,5 +36,6 @@
     components: "{{ item.components }}"
   with_items: "{{ satellite_composite_content_views }}"
   notify: handler - publish composite content views
+  when: satellite_composite_content_views is defined
 
 - meta: flush_handlers
