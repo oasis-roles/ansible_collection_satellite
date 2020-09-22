@@ -5,11 +5,11 @@ x509_extensions = usr_cert
 prompt = no
 
 [ req_distinguished_name ]
-C  = {{ satellite_country }}
-ST = {{ satellite_state }}
-L  = {{ satellite_city }}
-O  = {{ satellite_company }}
-OU = {{ satellite_organizational_unit}}
+C  = US
+ST = {{ satellite_cert_state }}
+L  = {{ satellite_cert_location }}
+O  = {{ satellite_cert_org }}
+OU = {{ satellite_cert_ou }}
 CN = {{ ansible_fqdn }}
 
 [ v3_req ]
